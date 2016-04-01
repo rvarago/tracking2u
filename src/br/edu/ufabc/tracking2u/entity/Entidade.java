@@ -1,4 +1,4 @@
-package br.edu.ufabc.tracking2u.dao;
+package br.edu.ufabc.tracking2u.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

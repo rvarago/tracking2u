@@ -1,7 +1,8 @@
-package br.edu.ufabc.tracking2u.dao;
+package br.edu.ufabc.tracking2u.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author rvarago
@@ -13,8 +14,9 @@ public class Colaborador extends Entidade implements Responsavel {
 	private String nome;
 	private String senha;
 
-	private Collection<Papel> papeis = new HashSet<>();
-	private Collection<Tarefa> tarefas = new HashSet<>();
+	private List<Papel> papeis = new ArrayList<>();
+	private List<Tarefa> tarefas = new ArrayList<>();
+	private List<Pendencia> pendencias = new ArrayList<>();
 
 	public String getNome() {
 		return this.nome;
@@ -32,12 +34,20 @@ public class Colaborador extends Entidade implements Responsavel {
 		this.senha = senha;
 	}
 
-	public Collection<Tarefa> getTarefas() {
+	public List<Tarefa> getTarefas() {
 		return this.tarefas;
 	}
 
-	public void setTarefas(Collection<Tarefa> tarefas) {
+	public void setTarefas(List<Tarefa> tarefas) {
 		this.tarefas = tarefas;
+	}
+
+	public List<Pendencia> getPendencias() {
+		return this.pendencias;
+	}
+
+	public void setPendencias(List<Pendencia> pendencias) {
+		this.pendencias = pendencias;
 	}
 
 	@Override

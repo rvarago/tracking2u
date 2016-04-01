@@ -1,4 +1,6 @@
-package br.edu.ufabc.tracking2u.dao;
+package br.edu.ufabc.tracking2u.entity;
+
+import java.util.List;
 
 /**
  * @author rvarago
@@ -12,6 +14,8 @@ public class Tarefa extends ItemEsforco {
 	private StatusTarefa status;
 	private Colaborador criador;
 	private Colaborador responsavel;
+
+	private List<Pendencia> pendencias;
 
 	public Long getDataPrometida() {
 		return this.dataPrometida;
@@ -51,6 +55,14 @@ public class Tarefa extends ItemEsforco {
 
 	public void setResponsavel(Colaborador responsavel) {
 		this.responsavel = responsavel;
+	}
+
+	public List<Pendencia> getPendencias() {
+		return this.pendencias;
+	}
+
+	public void setPendencias(List<Pendencia> pendencias) {
+		this.pendencias = pendencias;
 	}
 
 }

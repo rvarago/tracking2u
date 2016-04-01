@@ -1,4 +1,4 @@
-package br.edu.ufabc.tracking2u.dao;
+package br.edu.ufabc.tracking2u.entity;
 
 /**
  * @author rvarago
