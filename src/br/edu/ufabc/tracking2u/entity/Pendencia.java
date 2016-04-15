@@ -8,8 +8,8 @@ public class Pendencia extends ItemEsforco {
 	private static final long serialVersionUID = 1L;
 
 	private boolean finalizada;
-	private Colaborador criador;
-	private Colaborador responsavel;
+
+	private Tarefa tarefa;
 
 	public boolean isFinalizada() {
 		return this.finalizada;
@@ -19,20 +19,11 @@ public class Pendencia extends ItemEsforco {
 		this.finalizada = finalizada;
 	}
 
-	public Colaborador getCriador() {
-		return this.criador;
+	public Tarefa getTarefa() {
+		return this.tarefa;
 	}
 
-	public void setCriador(Colaborador criador) {
-		this.criador = criador;
+	public void setTarefa(Tarefa tarefa) {
+		this.tarefa = tarefa;
 	}
-
-	public Colaborador getResponsavel() {
-		return this.responsavel;
-	}
-
-	public void setResponsavel(Colaborador responsavel) {
-		this.responsavel = responsavel;
-	}
-
 }

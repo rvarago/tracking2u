@@ -7,6 +7,8 @@ import java.util.List;
 import br.edu.ufabc.tracking2u.entity.Entidade;
 
 /**
+ * Gerenciador de CRUD, inspirado no EntityManager do Hibernate.
+ *
  * @author rvarago
  */
 public interface PersistenceManager {

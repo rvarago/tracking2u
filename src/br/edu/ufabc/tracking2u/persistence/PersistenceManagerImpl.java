@@ -19,12 +19,18 @@ public class PersistenceManagerImpl implements PersistenceManager {
 
 	private final String baseFilePath;
 
+	/**
+	 * Para esta versão, os IDs são sobrescritos a cada inicialização do sistema
+	 */
+	private static Long ID_SEQUENCE = 1L;
+
 	public PersistenceManagerImpl(String path) {
 		this.baseFilePath = path;
 	}
 
 	@Override
 	public <E extends Entidade> void save(E entity) throws RuntimeException, FileNotFoundException, IOException {
+		entity.setId(ID_SEQUENCE++);
 		String fileName = this.filePath(entity.getClass().getSimpleName(), entity.getId());
 		try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(fileName))) {
 			writer.writeObject(entity);

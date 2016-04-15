@@ -17,6 +17,8 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
 
 /**
+ * Testes para {@link PersistenceManagerImpl}.
+ * 
  * @author rvarago
  */
 public class PersistenceManagerImplTest {
@@ -26,18 +28,15 @@ public class PersistenceManagerImplTest {
 	@Test
 	public void saveFind() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Pendencia pendencia = new Pendencia();
-		pendencia.setId(1L);
 		pendencia.setNome("Pendência 1");
 
 		Tarefa tarefa = new Tarefa();
-		tarefa.setId(1L);
 		tarefa.setNome("Tarefa 1");
 		tarefa.setDescricao("Descrição da Tarefa 1");
 		tarefa.setStatus(StatusTarefa.EM_ANLISE);
 		tarefa.setPendencias(asList(pendencia));
 
 		Colaborador colaborador = new Colaborador();
-		colaborador.setId(1L);
 		colaborador.setNome("Colaborador 1");
 		colaborador.setSenha("Senha do Colaborador 1");
 		colaborador.setTarefas(asList(tarefa));
@@ -64,10 +63,8 @@ public class PersistenceManagerImplTest {
 	@Test
 	public void list() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Colaborador colaborador1 = new Colaborador();
-		colaborador1.setId(1L);
 
 		Colaborador colaborador2 = new Colaborador();
-		colaborador2.setId(2L);
 
 		this.manager.save(colaborador1);
 		this.manager.save(colaborador2);

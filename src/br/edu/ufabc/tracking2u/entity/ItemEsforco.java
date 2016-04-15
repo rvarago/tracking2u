@@ -11,6 +11,8 @@ public abstract class ItemEsforco extends Entidade {
 	private Long dataCriacao;
 	private Long dataFinalizacao;
 	private String descricao;
+	private Colaborador criador;
+	private Colaborador responsavel;
 
 	public String getNome() {
 		return this.nome;
@@ -42,6 +44,22 @@ public abstract class ItemEsforco extends Entidade {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Colaborador getCriador() {
+		return this.criador;
+	}
+
+	public void setCriador(Colaborador criador) {
+		this.criador = criador;
+	}
+
+	public Colaborador getResponsavel() {
+		return this.responsavel;
+	}
+
+	public void setResponsavel(Colaborador responsavel) {
+		this.responsavel = responsavel;
 	}
 
 }
