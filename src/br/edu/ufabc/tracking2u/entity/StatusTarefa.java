@@ -7,7 +7,7 @@ import java.util.Map;
  * @author rvarago
  */
 public enum StatusTarefa {
-	AGUARDANDO_ANALISE(1L, "Aguardando Análise"), EM_ANLISE(2L, "Em Análise"), AGUARDANDO_DESENVOLVIMENTO(3L,
+	AGUARDANDO_ANALISE(1L, "Aguardando Análise"), EM_ANALISE(2L, "Em Análise"), AGUARDANDO_DESENVOLVIMENTO(3L,
 			"Aguardando Desenvolvimento"), EM_DESENVOLVIMENTO(4L, "Em Desenvolvimento"), AGUARDANDO_TESTE(5L,
 					"Aguardando Teste"), EM_TESTE(6L, "Em Teste"), AGUARDANDO_VALIDACAO(7L,
 							"Aguardando Validação"), EM_APROVACAO(8L, "Em Aprovação"), APROVADA(9L,

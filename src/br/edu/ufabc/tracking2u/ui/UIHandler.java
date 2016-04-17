@@ -1,5 +1,6 @@
 package br.edu.ufabc.tracking2u.ui;
 
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
@@ -22,31 +23,39 @@ public interface UIHandler {
 	 * @param nome
 	 *            nome da {@link Tarefa}
 	 * @param descricao
-	 *            breve descrição completa da tarefa a ser desenvolvida
+	 *            breve descrição da tarefa a ser desenvolvida
+	 * 
+	 * @param dataPrometida
+	 *            data da previsão de finalização da tarefa
 	 * @param criadorId
 	 *            responsável pela criação, deve ser um colaborador com o
 	 *            {@link Papel#GERENTE_PROJETO}.
 	 * @throws IllegalArgumentException
 	 *             caso o criador não possua a permissão necessária
 	 */
-	public void createTarefa(String nome, String descricao, Long criadorId) throws IllegalArgumentException;
+	public void createTarefa(String nome, String descricao, Long dataPrometida, Long criadorId)
+			throws IllegalArgumentException;
 
 	/**
 	 * Atualiza informações da {@link Tarefa}
 	 *
 	 * @param tarefaId
 	 *            {@link Tarefa} a ser atualizada
+	 * 
+	 * @param horasEsforco
+	 *            quantidade de horas trabalhadas ate o momento
 	 * @param responsavelAtualId
 	 *            identificado do novo {@link Colaborador}
-	 * @param codidoStatusAtual
-	 *            código do novo {@link StatusTarefa}
+	 * @param statusAtual
+	 *            Novo status {@link StatusTarefa}
 	 * @throws IllegalArgumentException
 	 *             caso o {@link Colaborador} definido por
 	 *             <code>responsavelId</code> não possua {@link Papel}
 	 *             compatível com o {@link StatusTarefa} definido por
 	 *             <code>codigoStatusAtual</code>
 	 */
-	public void updateTarefa(Long tarefaId, Long responsavelAtualId, Long codidoStatusAtual) throws IllegalArgumentException;
+	public void updateTarefa(Long tarefaId, Integer horasEsforco, Long responsavelAtualId, StatusTarefa statusAtual)
+			throws IllegalArgumentException;
 
 	/**
 	 * Cria nova {@link Pendencia}

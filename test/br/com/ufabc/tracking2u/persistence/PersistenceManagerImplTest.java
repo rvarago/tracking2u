@@ -33,7 +33,7 @@ public class PersistenceManagerImplTest {
 		Tarefa tarefa = new Tarefa();
 		tarefa.setNome("Tarefa 1");
 		tarefa.setDescricao("Descrição da Tarefa 1");
-		tarefa.setStatus(StatusTarefa.EM_ANLISE);
+		tarefa.setStatus(StatusTarefa.EM_ANALISE);
 		tarefa.setPendencias(asList(pendencia));
 
 		Colaborador colaborador = new Colaborador();
@@ -65,7 +65,7 @@ public class PersistenceManagerImplTest {
 		Colaborador colaborador1 = new Colaborador();
 
 		Colaborador colaborador2 = new Colaborador();
-
+		
 		this.manager.save(colaborador1);
 		this.manager.save(colaborador2);
 
