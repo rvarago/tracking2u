@@ -6,6 +6,10 @@
 package br.edu.ufabc.tracking2u.ui;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.entity.StatusTarefa;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +17,8 @@ import br.edu.ufabc.tracking2u.entity.Colaborador;
  */
 public class Tracking2UUI extends javax.swing.JFrame {
     Colaborador colaborador = new Colaborador();
+    UIHandlerImpl handler = new UIHandlerImpl();
+    
     /**
      * Creates new form Tracking2UUI
      */
@@ -32,9 +38,7 @@ public class Tracking2UUI extends javax.swing.JFrame {
         dialogLogin = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         labelUsuario = new javax.swing.JLabel();
-        labelSenha = new javax.swing.JLabel();
         textUsuario = new javax.swing.JTextField();
-        textSenha = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menuTarefas = new javax.swing.JMenu();
@@ -54,19 +58,11 @@ public class Tracking2UUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tracking 2U");
 
-        labelUsuario.setText("Usuário");
-
-        labelSenha.setText("Senha");
+        labelUsuario.setText("Colaborador");
 
         textUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textUsuarioActionPerformed(evt);
-            }
-        });
-
-        textSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSenhaActionPerformed(evt);
             }
         });
 
@@ -86,39 +82,28 @@ public class Tracking2UUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(buttonLogin)
-                .addGap(124, 124, 124))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(89, 89, 89)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
                         .addComponent(labelUsuario)
-                        .addComponent(labelSenha))
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(textUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                        .addComponent(textSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                    .addContainerGap(77, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(buttonLogin)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUsuario)
+                    .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(buttonLogin)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(65, 65, 65)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelUsuario)
-                        .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(16, 16, 16)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelSenha)
-                        .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(65, Short.MAX_VALUE)))
+                .addGap(29, 29, 29))
         );
 
         menuTarefas.setText("Tarefas");
@@ -144,16 +129,16 @@ public class Tracking2UUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
+                .addContainerGap(184, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(231, 231, 231))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(145, 145, 145)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,16 +149,17 @@ public class Tracking2UUI extends javax.swing.JFrame {
     }//GEN-LAST:event_listaColaboradores
 
     private void listaTarefas(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaTarefas
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            handler.listarTarefasPendencias(Long.valueOf(textUsuario.getText()));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Tracking2UUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_listaTarefas
 
     private void textUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textUsuarioActionPerformed
-
-    private void textSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textSenhaActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         // TODO add your handling code here:
@@ -181,7 +167,6 @@ public class Tracking2UUI extends javax.swing.JFrame {
 
     private void buttonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLoginMouseClicked
         // TODO add your handling code here:
-        this.colaborador.nome = textUsuario.getText();
     }//GEN-LAST:event_buttonLoginMouseClicked
 
     /**
@@ -223,12 +208,10 @@ public class Tracking2UUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogin;
     private javax.swing.JDialog dialogLogin;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuColaboradores;
     private javax.swing.JMenu menuTarefas;
-    private javax.swing.JTextField textSenha;
     private javax.swing.JTextField textUsuario;
     // End of variables declaration//GEN-END:variables
 }
