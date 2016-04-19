@@ -28,45 +28,102 @@ public class telaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonCadastrarTarefa = new javax.swing.JButton();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuTarefas = new javax.swing.JMenu();
+        menuTarefaCadastrar = new javax.swing.JMenuItem();
+        menuTarefaListar = new javax.swing.JMenuItem();
+        menuColaboradores = new javax.swing.JMenu();
+        menuColaboradorCadastrar = new javax.swing.JMenuItem();
+        menuColaboradorListar = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tracking 2U");
 
-        buttonCadastrarTarefa.setText("Cadastrar");
-        buttonCadastrarTarefa.addActionListener(new java.awt.event.ActionListener() {
+        menuTarefas.setText("Tarefas");
+
+        menuTarefaCadastrar.setText("Cadastrar");
+        menuTarefaCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarTarefaActionPerformed(evt);
+                menuTarefaCadastrarActionPerformed(evt);
             }
         });
+        menuTarefas.add(menuTarefaCadastrar);
+
+        menuTarefaListar.setText("Listar");
+        menuTarefaListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTarefaListarActionPerformed(evt);
+            }
+        });
+        menuTarefas.add(menuTarefaListar);
+
+        jMenuBar1.add(menuTarefas);
+
+        menuColaboradores.setText("Colaboradores");
+
+        menuColaboradorCadastrar.setText("Cadastrar");
+        menuColaboradorCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuColaboradorCadastrarActionPerformed(evt);
+            }
+        });
+        menuColaboradores.add(menuColaboradorCadastrar);
+
+        menuColaboradorListar.setText("Listar");
+        menuColaboradorListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuColaboradorListarActionPerformed(evt);
+            }
+        });
+        menuColaboradores.add(menuColaboradorListar);
+
+        jMenuBar1.add(menuColaboradores);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(buttonCadastrarTarefa)
-                .addContainerGap(270, Short.MAX_VALUE))
+            .addGap(0, 771, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(buttonCadastrarTarefa)
-                .addContainerGap(252, Short.MAX_VALUE))
+            .addGap(0, 454, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void buttonCadastrarTarefaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCadastrarTarefaActionPerformed
-		// TODO add your handling code here:
-		// botão Cadastrar pressionado
-		this.setEnabled(false);
+    private void menuTarefaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTarefaListarActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        new telaListaTarefas().setVisible(true);
+    }//GEN-LAST:event_menuTarefaListarActionPerformed
+
+    private void menuColaboradorCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuColaboradorCadastrarActionPerformed
+        // TODO add your handling code here:
+          this.setEnabled(false);
+	new telaCadastroColaborador().setVisible(true);
+    }//GEN-LAST:event_menuColaboradorCadastrarActionPerformed
+
+    private void menuTarefaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTarefaCadastrarActionPerformed
+        // TODO add your handling code here:
+        	this.setEnabled(false);
 		new telaCadastroTarefa(this).setVisible(true);
+    }//GEN-LAST:event_menuTarefaCadastrarActionPerformed
 
-	}// GEN-LAST:event_buttonCadastrarTarefaActionPerformed
+    private void menuColaboradorListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuColaboradorListarActionPerformed
+        // TODO add your handling code here:
+         this.setEnabled(false);
+	new telaListaColaboradores().setVisible(true);
+    }//GEN-LAST:event_menuColaboradorListarActionPerformed
+	
 
+	
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -107,11 +164,19 @@ public class telaPrincipal extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new telaPrincipal().setVisible(true);
+
 			}
 		});
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCadastrarTarefa;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menuColaboradorCadastrar;
+    private javax.swing.JMenuItem menuColaboradorListar;
+    private javax.swing.JMenu menuColaboradores;
+    private javax.swing.JMenuItem menuTarefaCadastrar;
+    private javax.swing.JMenuItem menuTarefaListar;
+    private javax.swing.JMenu menuTarefas;
     // End of variables declaration//GEN-END:variables
 }

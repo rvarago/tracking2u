@@ -1,5 +1,6 @@
 package br.edu.ufabc.tracking2u.ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class UIHandlerImpl implements UIHandler {
 		tarefa.setCriador(colaborador);
 		tarefa.setDataPrometida(dataPrometida);
 		tarefa.setDataCriacao(System.currentTimeMillis());
-		this.persist(colaborador);
+		this.persist(tarefa);
 	}
 
 	@Override
@@ -73,8 +74,9 @@ public class UIHandlerImpl implements UIHandler {
 		} catch (ClassNotFoundException | IOException e) {
 			throw new RuntimeException("Colaborador com ID " + responsavelAtualId + "não encontrado");
 		}
-		
-		//se a lista de papeis for formada somente pela permissão Cliente, o colaborador não poderá atribuir tarefas
+
+		// se a lista de papeis for formada somente pela permissão Cliente, o
+		// colaborador não poderá atribuir tarefas
 		if (responsavelAtual.listarPapeis().equals(Papel.CLIENTE)) {
 			throw new IllegalArgumentException(
 					"Não é possível atribuir tarefas a outros colaboradores quando se tem o nível de acesso "
@@ -83,7 +85,11 @@ public class UIHandlerImpl implements UIHandler {
 		tarefa.setStatus(statusAtual);
 		tarefa.setHorasEsforco(horasEsforco);
 		tarefa.setResponsavel(responsavelAtual);
-		this.persist(tarefa);
+		try {
+			this.manager.update(tarefa);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -129,7 +135,12 @@ public class UIHandlerImpl implements UIHandler {
 		pendencia.setFinalizada(true);
 		pendencia.setDataFinalizacao(System.currentTimeMillis());
 		pendencia.setResponsavel(responsavel);
-		this.persist(pendencia);
+		try {
+			this.manager.update(pendencia);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -143,9 +154,11 @@ public class UIHandlerImpl implements UIHandler {
 		if (!colaborador.listarPapeis().contains(Papel.CLIENTE)) {
 			throw new IllegalAccessException("Colaborador sem a permissão de " + Papel.CLIENTE + "necessária");
 		}
-
-		// bolar alguma forma de listar as tarefas e pendências
-		colaborador.getTarefas();
+		try {
+			this.manager.list(Tarefa.class);
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private <T extends Entidade> void persist(T entity) {

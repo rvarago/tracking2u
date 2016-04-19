@@ -5,7 +5,9 @@ import br.edu.ufabc.tracking2u.telas.telaPrincipal;
 public class App {
 
 	public static void main(String[] args) {
-	System.out.println("teste");
-            new telaPrincipal().setVisible(true);
+            telaPrincipal tela = new telaPrincipal();
+            tela.setVisible(true);
+            tela.setLocationRelativeTo(null);  // *** this will center your app ***
+
         }
 }
