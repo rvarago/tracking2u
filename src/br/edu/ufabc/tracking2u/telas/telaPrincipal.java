@@ -5,19 +5,69 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
+import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.entity.Tarefa;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tuliocarreira
  */
 public class telaPrincipal extends javax.swing.JFrame {
+	private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
 
 	/**
 	 * Creates new form telaPrincipal
 	 */
 	public telaPrincipal() {
 		initComponents();
+            try {
+                carregaListaTarefas();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(telaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(telaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	}
 
+	private void carregaListaTarefas() throws FileNotFoundException, ClassNotFoundException {
+		List<? super Tarefa> listaTarefas = new ArrayList<Tarefa>();
+                    try {
+                        listaTarefas = this.manager.list(Tarefa.class);
+                    } catch (IOException ex) {
+                        Logger.getLogger(telaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+		DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Nome");
+		modelo.addColumn("Descrição");
+		modelo.addColumn("Status");
+		modelo.addColumn("Responsável");
+                modelo.addColumn("Criador");
+                modelo.addColumn("Data de Previsão");
+
+		if (listaTarefas.isEmpty()) {
+			modelo.addRow(new String[] { "Sem dados", null,
+                        null, null, null, null, null});
+		}
+		for (int i = 0; i < listaTarefas.size(); i++) {
+			Tarefa t = (Tarefa) listaTarefas.get(i);
+			modelo.addRow(new String[] { t.getId() + "", t.getNome(),
+                        t.getDescricao(), t.getStatus()+"", t.getResponsavel()+"", 
+                    t.getCriador()+"", t.getDataPrometida()+"" });
+		}
+		tabelaTarefas.setModel(modelo);
+
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +79,12 @@ public class telaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaTarefas = new javax.swing.JTable();
+        buttonCriar = new javax.swing.JButton();
+        buttonSair = new javax.swing.JButton();
+        buttonEditar = new javax.swing.JButton();
+        buttonExcluir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTarefas = new javax.swing.JMenu();
         menuTarefaCadastrar = new javax.swing.JMenuItem();
@@ -41,6 +97,47 @@ public class telaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tracking 2U");
+
+        tabelaTarefas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaTarefas);
+
+        buttonCriar.setText("Criar");
+        buttonCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCriarActionPerformed(evt);
+            }
+        });
+
+        buttonSair.setText("Sair");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
+
+        buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
+
+        buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
 
         menuTarefas.setText("Tarefas");
 
@@ -88,11 +185,35 @@ public class telaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 771, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonCriar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSair)
+                        .addGap(32, 32, 32))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCriar)
+                    .addComponent(buttonSair)
+                    .addComponent(buttonEditar)
+                    .addComponent(buttonExcluir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,14 +221,12 @@ public class telaPrincipal extends javax.swing.JFrame {
 
     private void menuTarefaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTarefaListarActionPerformed
         // TODO add your handling code here:
-        this.setEnabled(false);
-        new telaListaTarefas().setVisible(true);
     }//GEN-LAST:event_menuTarefaListarActionPerformed
 
     private void menuColaboradorCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuColaboradorCadastrarActionPerformed
         // TODO add your handling code here:
           this.setEnabled(false);
-	new telaCadastroColaborador().setVisible(true);
+            new telaCadastroColaborador().setVisible(true);
     }//GEN-LAST:event_menuColaboradorCadastrarActionPerformed
 
     private void menuTarefaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTarefaCadastrarActionPerformed
@@ -121,7 +240,42 @@ public class telaPrincipal extends javax.swing.JFrame {
          this.setEnabled(false);
 	new telaListaColaboradores().setVisible(true);
     }//GEN-LAST:event_menuColaboradorListarActionPerformed
-	
+
+    private void buttonCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+		new telaCadastroTarefa(this).setVisible(true);
+    }//GEN-LAST:event_buttonCriarActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_buttonSairActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+        // TODO add your handling code here:
+        try {
+			int linha = tabelaTarefas.getSelectedRow();
+			Tarefa c = this.manager.find(Long.valueOf(linha), Tarefa.class);
+			this.setEnabled(false);
+			new telaCadastroTarefa(this, c).setVisible(true);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");
+    }//GEN-LAST:event_buttonEditarActionPerformed
+    }
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        // TODO add your handling code here:
+          try {
+			int linha = tabelaTarefas.getSelectedRow();
+			Tarefa c = this.manager.find(Long.valueOf(linha), Tarefa.class);
+                        manager.delete(c);
+			JOptionPane.showMessageDialog(this, "Tarefa excluída com sucesso!");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+    }
 
 	
 	/**
@@ -170,13 +324,19 @@ public class telaPrincipal extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCriar;
+    private javax.swing.JButton buttonEditar;
+    private javax.swing.JButton buttonExcluir;
+    private javax.swing.JButton buttonSair;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem menuColaboradorCadastrar;
     private javax.swing.JMenuItem menuColaboradorListar;
     private javax.swing.JMenu menuColaboradores;
     private javax.swing.JMenuItem menuTarefaCadastrar;
     private javax.swing.JMenuItem menuTarefaListar;
     private javax.swing.JMenu menuTarefas;
+    private javax.swing.JTable tabelaTarefas;
     // End of variables declaration//GEN-END:variables
 }

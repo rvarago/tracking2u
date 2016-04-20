@@ -5,6 +5,7 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
+import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
 import javax.swing.JOptionPane;
@@ -20,7 +21,8 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	 */
 	private telaPrincipal telaAnterior;
 	private UIHandlerImpl uihandler;
-
+        Tarefa tarefa;
+	
 	private telaCadastroTarefa() {
 		initComponents();
 	}
@@ -28,6 +30,17 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	public telaCadastroTarefa(telaPrincipal telaAnterior) {
 		this();
 		this.telaAnterior = telaAnterior;
+        }
+	/**
+	 * Creates new form telaCadastroColaborador
+	 */
+
+
+	public telaCadastroTarefa(telaPrincipal telaAnterior, Tarefa t) {
+		this();
+                this.telaAnterior = telaAnterior;
+		this.tarefa = t;
+
 	}
 
 	/**
@@ -49,6 +62,9 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
         scrollTextDesc = new javax.swing.JScrollPane();
         textDesc = new javax.swing.JTextArea();
         textDataPrevisao = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        comboboxStatus = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Tarefa");
@@ -99,64 +115,104 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Associar Pendências");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboboxStatusActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDesc)
-                            .addComponent(labelNome)
-                            .addComponent(labelDataPrevisao)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonSalvarCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonCancelarCadastro)
-                .addGap(56, 56, 56))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(292, Short.MAX_VALUE)))
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelDesc)
+                                    .addComponent(labelDataPrevisao))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 16, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonSalvarCadastro)))
+                        .addComponent(buttonCancelarCadastro)
+                        .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelNome)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollTextDesc)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(labelNome)
-                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNome)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboboxStatus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(labelDesc)
                 .addGap(18, 18, 18)
-                .addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(labelDataPrevisao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancelarCadastro)
-                    .addComponent(buttonSalvarCadastro))
+                    .addComponent(buttonSalvarCadastro)
+                    .addComponent(jButton1))
                 .addGap(23, 23, 23))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(58, 58, 58)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(328, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboboxStatusActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                this.setEnabled(false);
+		new telaListaPendencias().setVisible(true);
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 	private void buttonCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroActionPerformed
 		// TODO add your handling code here:
@@ -245,7 +301,10 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new telaCadastroTarefa().setVisible(true);
+				telaCadastroTarefa tela = new telaCadastroTarefa();
+                                tela.setVisible(true);
+                                tela.setLocationRelativeTo(null);  // *** this will center your app ***
+
 			}
 		});
 	}
@@ -253,6 +312,9 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelarCadastro;
     private javax.swing.JButton buttonSalvarCadastro;
+    private javax.swing.JComboBox<String> comboboxStatus;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelDataPrevisao;
     private javax.swing.JLabel labelDesc;
     private javax.swing.JLabel labelNome;

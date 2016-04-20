@@ -8,7 +8,6 @@ package br.edu.ufabc.tracking2u.telas;
 import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
-import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

@@ -56,6 +56,7 @@ public class UIHandlerImpl implements UIHandler {
 		tarefa.setCriador(colaborador);
 		tarefa.setDataPrometida(dataPrometida);
 		tarefa.setDataCriacao(System.currentTimeMillis());
+                
 		this.persist(tarefa);
 	}
 
