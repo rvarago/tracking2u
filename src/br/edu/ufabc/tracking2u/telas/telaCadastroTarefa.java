@@ -6,9 +6,20 @@
 package br.edu.ufabc.tracking2u.telas;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 import br.edu.ufabc.tracking2u.entity.Tarefa;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
+import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,9 +31,10 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	 * Creates new form telaCadastroTarefa
 	 */
 	private telaPrincipal telaAnterior;
-	private UIHandlerImpl uihandler;
+	private UIHandler uihandler =  new UIHandlerImpl();
         Tarefa tarefa;
-	
+        private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
+        
 	private telaCadastroTarefa() {
 		initComponents();
 	}
@@ -122,7 +134,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
             }
         });
 
-        comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
         comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxStatusActionPerformed(evt);
@@ -204,6 +216,8 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
     private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxStatusActionPerformed
         // TODO add your handling code here:
+        
+        	
     }//GEN-LAST:event_comboboxStatusActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -235,7 +249,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		}
 
 		// como passar o colaborador atual?
-		uihandler.createTarefa(nome, desc, data, 123L);
+		uihandler.createTarefa(nome, desc, data, 1L);
 		JOptionPane.showMessageDialog(this, "Tarefa cadastrada com sucesso");
 		this.dispose();
 		telaAnterior.setEnabled(true);

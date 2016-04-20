@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import br.edu.ufabc.tracking2u.entity.Entidade;
+import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 
 /**
  * Gerenciador de CRUD, inspirado no EntityManager do Hibernate.
@@ -23,4 +24,5 @@ public interface PersistenceManager {
 
 	public <E extends Entidade> List<? super E> list(Class<? extends E> clazz)
 			throws FileNotFoundException, IOException, ClassNotFoundException;
+
 }

@@ -6,6 +6,7 @@
 package br.edu.ufabc.tracking2u.telas;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author tuliocarreira
  */
 public class telaCadastroColaborador extends javax.swing.JFrame {
-        UIHandlerImpl uihandler;
+        UIHandler uihandler = new UIHandlerImpl();
 	telaListaColaboradores telaLista;
         telaPrincipal telaAnterior;
 	Colaborador colaborador;
@@ -39,7 +40,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 		this.telaLista = telaLista;
 		this.colaborador = c;
 
-	}
+        }
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -156,7 +157,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
                 String login = "Login teste";
 		String senha = "Senha teste";
                 List<Long> codigoPapeis = new ArrayList<>();
-                codigoPapeis.add(123L);
+                codigoPapeis.add(1L);
 		uihandler.createColaborador(login, senha, codigoPapeis);
 		JOptionPane.showMessageDialog(this, "Colaborador cadastrado com sucesso");
 		this.dispose();
@@ -170,6 +171,8 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 	private void buttonCancelarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		this.dispose();
+                telaAnterior.setEnabled(true);
+
 
 	}
 
