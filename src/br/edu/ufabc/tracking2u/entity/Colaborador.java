@@ -51,8 +51,8 @@ public class Colaborador extends Entidade implements Responsavel {
 	}
 
 	@Override
-	public void adicionarPapel(Papel papel) {
-		this.papeis.add(papel);
+	public void adicionarPapel(List<Papel> papeis) {
+		this.papeis = papeis;
 
 	}
 

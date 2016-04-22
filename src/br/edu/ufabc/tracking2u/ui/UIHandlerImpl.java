@@ -1,8 +1,9 @@
 package br.edu.ufabc.tracking2u.ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.entity.Entidade;
@@ -23,30 +24,30 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
 public class UIHandlerImpl implements UIHandler {
 
 	private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
-
+	
 	@Override
-	public void createColaborador(String nome, String senha, List<Long> codigoPapeis) {
+	public void createColaborador(String nome, String senha, List<Papel> papeis){
 		Colaborador colaborador = new Colaborador();
 		colaborador.setNome(nome);
 		colaborador.setSenha(senha);
-		for (Long codigoPapel : codigoPapeis) {
-			colaborador.adicionarPapel(Papel.valueOf(codigoPapel));
-		}
+		colaborador.adicionarPapel(papeis);
 		this.persist(colaborador);
+		JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso");
 	}
 
 	@Override
 	public void createTarefa(String nome, String descricao, Long dataPrometida, Long criadorId)
 			throws IllegalArgumentException {
-		Colaborador colaborador;
+		Colaborador colaborador = new Colaborador();
 		try {
 			colaborador = this.manager.find(criadorId, Colaborador.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Colaborador com ID " + criadorId + " não encontrado");
+			JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não encontrado");
 		}
 		if (!colaborador.listarPapeis().contains(Papel.GERENTE_PROJETO)) {
-			throw new IllegalArgumentException("Colaborador com ID = " + criadorId + " não possui o Papel "
-					+ Papel.GERENTE_PROJETO + " necessário para criar a tarefa");
+                    JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não possui o Papel " 
+                            +Papel.GERENTE_PROJETO + " necessário para criar a tarefa");
+
 		}
 		Tarefa tarefa = new Tarefa();
 		tarefa.setNome(nome);

@@ -1,11 +1,12 @@
 package br.edu.ufabc.tracking2u;
 
-import br.edu.ufabc.tracking2u.telas.telaPrincipal;
+import br.edu.ufabc.tracking2u.telas.telaListaColaboradores;
 
 public class App {
 
 	public static void main(String[] args) {
-            telaPrincipal tela = new telaPrincipal();
+           // telaLogin tela = new telaLogin();
+			telaListaColaboradores tela = new telaListaColaboradores();
             tela.setVisible(true);
             tela.setLocationRelativeTo(null);  // *** this will center your app ***
 

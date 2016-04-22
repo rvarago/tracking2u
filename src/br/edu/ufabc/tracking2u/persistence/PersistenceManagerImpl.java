@@ -24,7 +24,7 @@ public class PersistenceManagerImpl implements PersistenceManager {
 	 */
 	private Long ID_SEQUENCE;
 
-	protected PersistenceManagerImpl(String path) {
+	public PersistenceManagerImpl(String path) {
 		this.baseFilePath = path;
 		this.ID_SEQUENCE = 1L;
 		for (String fileName : new File(this.baseFilePath).list()) {

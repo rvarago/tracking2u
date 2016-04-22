@@ -219,9 +219,9 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void buttonCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroActionPerformed
-		// TODO add your handling code here:
+                		this.dispose();
+
 		this.telaAnterior.setEnabled(true);
-		this.dispose();
 
 	}// GEN-LAST:event_buttonCancelarCadastroActionPerformed
 
@@ -239,7 +239,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		}
 
 		// como passar o colaborador atual?
-		this.uihandler.createTarefa(nome, desc, data, 1L);
+		this.uihandler.createTarefa(nome, desc, data, 2L);
 		JOptionPane.showMessageDialog(this, "Tarefa cadastrada com sucesso");
 		this.dispose();
 		this.telaAnterior.setEnabled(true);

@@ -15,7 +15,7 @@ import br.edu.ufabc.tracking2u.entity.Tarefa;
  * @author rvarago
  */
 public interface UIHandler {
-	public void createColaborador(String nome, String senha, List<Long> codigoPapeis);
+	public void createColaborador(String nome, String senha, List<Papel> papeis);
 
 	/**
 	 * Cria uma {@link Tarefa}
@@ -90,5 +90,6 @@ public interface UIHandler {
 	 *             <code>colaboradorId</code> não possua o {@link Papel#CLIENTE}
 	 */
 	public void listarTarefasPendencias(Long colaboradorId) throws IllegalAccessException;
+
 
 }
