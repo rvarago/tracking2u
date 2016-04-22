@@ -22,15 +22,28 @@ public class PersistenceManagerImpl implements PersistenceManager {
 	/**
 	 * Para esta versão, os IDs são sobrescritos a cada inicialização do sistema
 	 */
-	private static Long ID_SEQUENCE = 1L;
+	private Long ID_SEQUENCE;
 
-	public PersistenceManagerImpl(String path) {
+	protected PersistenceManagerImpl(String path) {
 		this.baseFilePath = path;
+		this.ID_SEQUENCE = 1L;
+		for (String fileName : new File(this.baseFilePath).list()) {
+			int startId = fileName.indexOf("_");
+			int endId = fileName.indexOf("\\.");
+			try {
+				Long currentId = Long.valueOf(fileName.substring(startId, endId));
+				if (currentId > this.ID_SEQUENCE) {
+					this.ID_SEQUENCE = currentId;
+				}
+			} catch (Exception e) {
+				continue;
+			}
+		}
 	}
 
 	@Override
 	public <E extends Entidade> void save(E entity) throws RuntimeException, FileNotFoundException, IOException {
-		entity.setId(ID_SEQUENCE++);
+		entity.setId(this.ID_SEQUENCE++);
 		String fileName = this.filePath(entity.getClass().getSimpleName(), entity.getId());
 		try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(fileName))) {
 			writer.writeObject(entity);

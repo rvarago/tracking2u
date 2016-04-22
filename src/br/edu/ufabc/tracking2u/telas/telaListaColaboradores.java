@@ -5,30 +5,32 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
-import br.edu.ufabc.tracking2u.entity.Colaborador;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 
 /**
  *
  * @author tuliocarreira
  */
 public class telaListaColaboradores extends javax.swing.JFrame {
-	private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
+	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
 
 	/**
 	 * Creates new form telaListaColaboradores
 	 */
 	public telaListaColaboradores() {
-		initComponents();
-		carregaListaColaboradores();
+		this.initComponents();
+		this.carregaListaColaboradores();
 	}
 
 	private void carregaListaColaboradores() {
@@ -51,7 +53,7 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 			Colaborador c = (Colaborador) listaColaboradores.get(i);
 			modelo.addRow(new String[] { c.getId() + "", c.getNome() });
 		}
-		tableColaboradores.setModel(modelo);
+		this.tableColaboradores.setModel(modelo);
 
 	}
 
@@ -67,60 +69,59 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		jScrollPane1 = new javax.swing.JScrollPane();
-		tableColaboradores = new javax.swing.JTable();
-		buttonCancelaListaColaboradores = new javax.swing.JButton();
-		buttonEditarColaborador = new javax.swing.JButton();
+		this.jScrollPane1 = new javax.swing.JScrollPane();
+		this.tableColaboradores = new javax.swing.JTable();
+		this.buttonCancelaListaColaboradores = new javax.swing.JButton();
+		this.buttonEditarColaborador = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		tableColaboradores.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { null, null }, { null, null }, { null, null }, { null, null } },
-				new String[] { "Colaborador", "Permissões" }));
-		jScrollPane1.setViewportView(tableColaboradores);
+		this.tableColaboradores.setModel(
+				new javax.swing.table.DefaultTableModel(new Object[][] { { null, null }, { null, null }, { null, null }, { null, null } },
+						new String[] { "Colaborador", "Permissões" }));
+		this.jScrollPane1.setViewportView(this.tableColaboradores);
 
-		buttonCancelaListaColaboradores.setText("Cancelar");
-		buttonCancelaListaColaboradores.addActionListener(new java.awt.event.ActionListener() {
+		this.buttonCancelaListaColaboradores.setText("Cancelar");
+		this.buttonCancelaListaColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonCancelaListaColaboradoresActionPerformed(evt);
+				telaListaColaboradores.this.buttonCancelaListaColaboradoresActionPerformed(evt);
 			}
 		});
 
-		buttonEditarColaborador.setText("Editar");
-		buttonEditarColaborador.addActionListener(new java.awt.event.ActionListener() {
+		this.buttonEditarColaborador.setText("Editar");
+		this.buttonEditarColaborador.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonEditarColaboradorActionPerformed(evt);
+				telaListaColaboradores.this.buttonEditarColaboradorActionPerformed(evt);
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(32, 32, 32)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addComponent(buttonEditarColaborador)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(buttonCancelaListaColaboradores).addGap(31, 31, 31))
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(40, Short.MAX_VALUE)))));
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
+		this.getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addGap(32, 32, 32)
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addComponent(this.buttonEditarColaborador)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addComponent(this.buttonCancelaListaColaboradores).addGap(31, 31, 31))
+						.addGroup(layout.createSequentialGroup().addComponent(this.jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+								482, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(40, Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addGap(17, 17, 17)
-						.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-						.addGap(18, 18, 18)
+						.addComponent(this.jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE).addGap(18, 18, 18)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(buttonCancelaListaColaboradores).addComponent(buttonEditarColaborador))
-						.addContainerGap()));
+								.addComponent(this.buttonCancelaListaColaboradores).addComponent(this.buttonEditarColaborador))
+				.addContainerGap()));
 
-		pack();
+		this.pack();
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void buttonEditarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonEditarColaboradorActionPerformed
 		// TODO add your handling code here:
 		try {
-			int linha = tableColaboradores.getSelectedRow();
+			int linha = this.tableColaboradores.getSelectedRow();
 			Colaborador c = this.manager.find(Long.valueOf(linha), Colaborador.class);
 			this.setEnabled(false);
 			new telaCadastroColaborador(this, c).setVisible(true);
@@ -157,22 +158,19 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaColaboradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				new telaListaColaboradores().setVisible(true);
 			}

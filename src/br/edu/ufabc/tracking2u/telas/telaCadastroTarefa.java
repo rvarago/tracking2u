@@ -5,21 +5,13 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
-import br.edu.ufabc.tracking2u.entity.Colaborador;
-import br.edu.ufabc.tracking2u.entity.StatusTarefa;
+import javax.swing.JOptionPane;
+
 import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,26 +23,26 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	 * Creates new form telaCadastroTarefa
 	 */
 	private telaPrincipal telaAnterior;
-	private UIHandler uihandler =  new UIHandlerImpl();
-        Tarefa tarefa;
-        private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
-        
+	private UIHandler uihandler = new UIHandlerImpl();
+	Tarefa tarefa;
+	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
+
 	private telaCadastroTarefa() {
-		initComponents();
+		this.initComponents();
 	}
 
 	public telaCadastroTarefa(telaPrincipal telaAnterior) {
 		this();
 		this.telaAnterior = telaAnterior;
-        }
+	}
+
 	/**
 	 * Creates new form telaCadastroColaborador
 	 */
 
-
 	public telaCadastroTarefa(telaPrincipal telaAnterior, Tarefa t) {
 		this();
-                this.telaAnterior = telaAnterior;
+		this.telaAnterior = telaAnterior;
 		this.tarefa = t;
 
 	}
@@ -62,186 +54,184 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        buttonCancelarCadastro = new javax.swing.JButton();
-        buttonSalvarCadastro = new javax.swing.JButton();
-        labelNome = new javax.swing.JLabel();
-        labelDesc = new javax.swing.JLabel();
-        labelDataPrevisao = new javax.swing.JLabel();
-        textNome = new javax.swing.JTextField();
-        scrollTextDesc = new javax.swing.JScrollPane();
-        textDesc = new javax.swing.JTextArea();
-        textDataPrevisao = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        comboboxStatus = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+		this.buttonCancelarCadastro = new javax.swing.JButton();
+		this.buttonSalvarCadastro = new javax.swing.JButton();
+		this.labelNome = new javax.swing.JLabel();
+		this.labelDesc = new javax.swing.JLabel();
+		this.labelDataPrevisao = new javax.swing.JLabel();
+		this.textNome = new javax.swing.JTextField();
+		this.scrollTextDesc = new javax.swing.JScrollPane();
+		this.textDesc = new javax.swing.JTextArea();
+		this.textDataPrevisao = new javax.swing.JTextField();
+		this.jButton1 = new javax.swing.JButton();
+		this.comboboxStatus = new javax.swing.JComboBox<>();
+		this.jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Tarefa");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
+		this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		this.setTitle("Cadastro de Tarefa");
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosed(java.awt.event.WindowEvent evt) {
+				telaCadastroTarefa.this.formWindowClosed(evt);
+			}
+		});
 
-        buttonCancelarCadastro.setText("Cancelar");
-        buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonCancelarCadastroMouseClicked(evt);
-            }
-        });
-        buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelarCadastroActionPerformed(evt);
-            }
-        });
+		this.buttonCancelarCadastro.setText("Cancelar");
+		this.buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				telaCadastroTarefa.this.buttonCancelarCadastroMouseClicked(evt);
+			}
+		});
+		this.buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.buttonCancelarCadastroActionPerformed(evt);
+			}
+		});
 
-        buttonSalvarCadastro.setText("Salvar");
-        buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSalvarCadastroActionPerformed(evt);
-            }
-        });
+		this.buttonSalvarCadastro.setText("Salvar");
+		this.buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.buttonSalvarCadastroActionPerformed(evt);
+			}
+		});
 
-        labelNome.setText("Nome");
+		this.labelNome.setText("Nome");
 
-        labelDesc.setText("Descrição");
+		this.labelDesc.setText("Descrição");
 
-        labelDataPrevisao.setText("Data de Previsão de Término");
+		this.labelDataPrevisao.setText("Data de Previsão de Término");
 
-        textNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNomeActionPerformed(evt);
-            }
-        });
+		this.textNome.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.textNomeActionPerformed(evt);
+			}
+		});
 
-        textDesc.setColumns(20);
-        textDesc.setRows(5);
-        scrollTextDesc.setViewportView(textDesc);
+		this.textDesc.setColumns(20);
+		this.textDesc.setRows(5);
+		this.scrollTextDesc.setViewportView(this.textDesc);
 
-        textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textDataPrevisaoActionPerformed(evt);
-            }
-        });
+		this.textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.textDataPrevisaoActionPerformed(evt);
+			}
+		});
 
-        jButton1.setText("Associar Pendências");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+		this.jButton1.setText("Associar Pendências");
+		this.jButton1.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.jButton1ActionPerformed(evt);
+			}
+		});
 
-        comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
-        comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboboxStatusActionPerformed(evt);
-            }
-        });
+		this.comboboxStatus.setModel(
+				new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
+		this.comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				telaCadastroTarefa.this.comboboxStatusActionPerformed(evt);
+			}
+		});
 
-        jLabel1.setText("Status");
+		this.jLabel1.setText("Status");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(105, 105, 105))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDesc)
-                                    .addComponent(labelDataPrevisao))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 16, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonSalvarCadastro)))
-                        .addComponent(buttonCancelarCadastro)
-                        .addContainerGap(15, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelNome)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollTextDesc)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comboboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 25, 25))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNome)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboboxStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(labelDesc)
-                .addGap(18, 18, 18)
-                .addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(labelDataPrevisao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCancelarCadastro)
-                    .addComponent(buttonSalvarCadastro)
-                    .addComponent(jButton1))
-                .addGap(23, 23, 23))
-        );
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
+		this.getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(this.jLabel1).addGap(105, 105, 105))
+				.addGroup(layout.createSequentialGroup().addGap(23, 23, 23).addGroup(layout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
+								.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(0, 0, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup().addGroup(layout
+								.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup()
+										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(this.labelDesc).addComponent(this.labelDataPrevisao))
+										.addGap(0, 0, Short.MAX_VALUE))
+								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+										layout.createSequentialGroup().addGap(0, 16, Short.MAX_VALUE).addComponent(this.jButton1)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+												.addComponent(this.buttonSalvarCadastro)))
+								.addComponent(this.buttonCancelarCadastro).addContainerGap(15, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup().addComponent(this.labelNome)
+								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+										.addComponent(this.scrollTextDesc)
+										.addGroup(layout.createSequentialGroup()
+												.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(this.comboboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 137,
+														javax.swing.GroupLayout.PREFERRED_SIZE)))
+								.addGap(25, 25, 25)))));
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup().addGap(20, 20, 20)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(this.labelNome).addComponent(this.jLabel1))
+						.addGap(18, 18, 18)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(this.comboboxStatus))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+						.addComponent(this.labelDesc).addGap(18, 18, 18)
+						.addComponent(this.scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.PREFERRED_SIZE).addGap(34, 34, 34).addComponent(this.labelDataPrevisao)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(42, 42, 42)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(this.buttonCancelarCadastro).addComponent(this.buttonSalvarCadastro)
+								.addComponent(this.jButton1)).addGap(23, 23, 23)));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		this.pack();
+	}// </editor-fold>//GEN-END:initComponents
 
-    private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxStatusActionPerformed
-        // TODO add your handling code here:
-        
-        	
-    }//GEN-LAST:event_comboboxStatusActionPerformed
+	private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboboxStatusActionPerformed
+		// TODO add your handling code here:
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-                this.setEnabled(false);
+	}// GEN-LAST:event_comboboxStatusActionPerformed
+
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		// TODO add your handling code here:
+		this.setEnabled(false);
 		new telaListaPendencias().setVisible(true);
 
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void buttonCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroActionPerformed
 		// TODO add your handling code here:
-		telaAnterior.setEnabled(true);
+		this.telaAnterior.setEnabled(true);
 		this.dispose();
 
 	}// GEN-LAST:event_buttonCancelarCadastroActionPerformed
 
 	private void buttonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonSalvarCadastroActionPerformed
 		// TODO add your handling code here:
-		String nome = textNome.getText();
-		String desc = textDesc.getText();
+		String nome = this.textNome.getText();
+		String desc = this.textDesc.getText();
 		Long data;
 		try {
-			data = Long.valueOf(textDataPrevisao.getText());
+			data = Long.valueOf(this.textDataPrevisao.getText());
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Data inválida");
@@ -249,15 +239,15 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		}
 
 		// como passar o colaborador atual?
-		uihandler.createTarefa(nome, desc, data, 1L);
+		this.uihandler.createTarefa(nome, desc, data, 1L);
 		JOptionPane.showMessageDialog(this, "Tarefa cadastrada com sucesso");
 		this.dispose();
-		telaAnterior.setEnabled(true);
+		this.telaAnterior.setEnabled(true);
 	}// GEN-LAST:event_buttonSalvarCadastroActionPerformed
 
 	private void formWindowClosed(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosed
 		// tratamento para operações de fechamento da janela
-		telaAnterior.setEnabled(true);
+		this.telaAnterior.setEnabled(true);
 	}// GEN-LAST:event_formWindowClosed
 
 	private void buttonCancelarCadastroMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroMouseClicked
@@ -298,43 +288,41 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				telaCadastroTarefa tela = new telaCadastroTarefa();
-                                tela.setVisible(true);
-                                tela.setLocationRelativeTo(null);  // *** this will center your app ***
+				tela.setVisible(true);
+				tela.setLocationRelativeTo(null); // *** this will center your
+													// app ***
 
 			}
 		});
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCancelarCadastro;
-    private javax.swing.JButton buttonSalvarCadastro;
-    private javax.swing.JComboBox<String> comboboxStatus;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel labelDataPrevisao;
-    private javax.swing.JLabel labelDesc;
-    private javax.swing.JLabel labelNome;
-    private javax.swing.JScrollPane scrollTextDesc;
-    private javax.swing.JTextField textDataPrevisao;
-    private javax.swing.JTextArea textDesc;
-    private javax.swing.JTextField textNome;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton buttonCancelarCadastro;
+	private javax.swing.JButton buttonSalvarCadastro;
+	private javax.swing.JComboBox<String> comboboxStatus;
+	private javax.swing.JButton jButton1;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel labelDataPrevisao;
+	private javax.swing.JLabel labelDesc;
+	private javax.swing.JLabel labelNome;
+	private javax.swing.JScrollPane scrollTextDesc;
+	private javax.swing.JTextField textDataPrevisao;
+	private javax.swing.JTextArea textDesc;
+	private javax.swing.JTextField textNome;
+	// End of variables declaration//GEN-END:variables
 }
