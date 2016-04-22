@@ -169,7 +169,7 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		try {
 			int linha = this.tableColaboradores.getSelectedRow();
-			Colaborador c = this.manager.find(Long.valueOf(linha), Colaborador.class);
+			Colaborador c = this.manager.find(Long.valueOf(linha+1), Colaborador.class);
 			this.setEnabled(false);
 			telaCadastroColaborador tela = new telaCadastroColaborador(this, c);
 			tela.setVisible(true);

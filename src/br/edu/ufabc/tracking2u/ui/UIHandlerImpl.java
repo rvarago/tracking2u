@@ -12,6 +12,7 @@ import br.edu.ufabc.tracking2u.entity.Pendencia;
 import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
 
 /**
@@ -23,8 +24,8 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
  */
 public class UIHandlerImpl implements UIHandler {
 
-	private final PersistenceManager manager = new PersistenceManagerImpl("entidades/");
-	
+		private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
+
 	@Override
 	public void createColaborador(String nome, String senha, List<Papel> papeis){
 		Colaborador colaborador = new Colaborador();

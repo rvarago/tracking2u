@@ -25,7 +25,6 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	private telaPrincipal telaAnterior;
 	private UIHandler uihandler = new UIHandlerImpl();
 	Tarefa tarefa;
-	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
 
 	private telaCadastroTarefa() {
 		this.initComponents();

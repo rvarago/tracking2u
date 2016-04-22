@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.entity.Papel;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
+import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
 
@@ -24,6 +26,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 	UIHandler uihandler = new UIHandlerImpl();
 	telaListaColaboradores telaAnterior;
 	Colaborador colaborador;
+	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
 
 	/**
 	 * Creates new form telaCadastroColaborador
@@ -43,7 +46,14 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 		this();
 		this.telaAnterior = telaLista;
 		this.colaborador = c;
+                carregaDados(c);
 	}
+        
+        public void carregaDados(Colaborador c){
+                textNome.setText(c.getNome()+"");
+                textSenha.setText(c.getSenha()+"");
+                listPapeis.setSelectedIndices(c.listarPapeis());
+        }
 
 	public void carregaListaPapeis() {
 		DefaultListModel model = new DefaultListModel();
