@@ -8,8 +8,6 @@ package br.edu.ufabc.tracking2u.telas;
 import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Tarefa;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
 
@@ -133,8 +131,8 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 			}
 		});
 
-		this.comboboxStatus.setModel(
-				new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
+		this.comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(
+				new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
 		this.comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,61 +144,72 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
 		this.getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(this.jLabel1).addGap(105, 105, 105))
-				.addGroup(layout.createSequentialGroup().addGap(23, 23, 23).addGroup(layout
-						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
-								.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(0, 0, Short.MAX_VALUE))
-						.addGroup(layout.createSequentialGroup().addGroup(layout
-								.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				javax.swing.GroupLayout.Alignment.TRAILING,
+				layout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(this.jLabel1).addGap(105, 105, 105))
+				.addGroup(layout.createSequentialGroup().addGap(23, 23, 23)
+						.addGroup(layout
+								.createParallelGroup(
+										javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
+										.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
+												151, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(0, 0, Short.MAX_VALUE))
 								.addGroup(layout.createSequentialGroup()
 										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(this.labelDesc).addComponent(this.labelDataPrevisao))
-										.addGap(0, 0, Short.MAX_VALUE))
-								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-										layout.createSequentialGroup().addGap(0, 16, Short.MAX_VALUE).addComponent(this.jButton1)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-												.addComponent(this.buttonSalvarCadastro)))
-								.addComponent(this.buttonCancelarCadastro).addContainerGap(15, Short.MAX_VALUE))
-						.addGroup(layout.createSequentialGroup().addComponent(this.labelNome)
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(this.scrollTextDesc)
-										.addGroup(layout.createSequentialGroup()
-												.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(this.comboboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 137,
-														javax.swing.GroupLayout.PREFERRED_SIZE)))
-								.addGap(25, 25, 25)))));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup().addGap(20, 20, 20)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(this.labelNome).addComponent(this.jLabel1))
+												.addGroup(layout.createSequentialGroup()
+														.addGroup(layout
+																.createParallelGroup(
+																		javax.swing.GroupLayout.Alignment.LEADING)
+																.addComponent(this.labelDesc)
+																.addComponent(this.labelDataPrevisao))
+														.addGap(0, 0, Short.MAX_VALUE))
+												.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+														layout.createSequentialGroup().addGap(0, 16, Short.MAX_VALUE)
+																.addComponent(this.jButton1)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(this.buttonSalvarCadastro)))
+										.addComponent(this.buttonCancelarCadastro).addContainerGap(15, Short.MAX_VALUE))
+								.addGroup(layout.createSequentialGroup().addComponent(this.labelNome)
+										.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+												.addComponent(this.scrollTextDesc)
+												.addGroup(layout.createSequentialGroup()
+														.addComponent(this.textNome,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 144,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(this.comboboxStatus,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 137,
+																javax.swing.GroupLayout.PREFERRED_SIZE)))
+										.addGap(25, 25, 25)))));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addGap(20, 20, 20)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(this.labelNome).addComponent(this.jLabel1))
 						.addGap(18, 18, 18)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addComponent(this.comboboxStatus))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
 						.addComponent(this.labelDesc).addGap(18, 18, 18)
-						.addComponent(this.scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE).addGap(34, 34, 34).addComponent(this.labelDataPrevisao)
+						.addComponent(this.scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(34, 34, 34).addComponent(this.labelDataPrevisao)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(42, 42, 42)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(this.buttonCancelarCadastro).addComponent(this.buttonSalvarCadastro)
-								.addComponent(this.jButton1)).addGap(23, 23, 23)));
+								.addComponent(this.jButton1))
+						.addGap(23, 23, 23)));
 
 		this.pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -218,7 +227,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void buttonCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroActionPerformed
-                		this.dispose();
+		this.dispose();
 
 		this.telaAnterior.setEnabled(true);
 
@@ -287,13 +296,17 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaCadastroTarefa.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		}
 		// </editor-fold>
 

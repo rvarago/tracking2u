@@ -68,8 +68,8 @@ public class PersistenceManagerImpl implements PersistenceManager {
 		try (ObjectInputStream reader = new ObjectInputStream(new FileInputStream(fileName))) {
 			return clazz.cast(reader.readObject());
 		}
-	}
-
+        }
+        
 	@Override
 	public <E extends Entidade> List<? super Entidade> list(Class<? extends E> clazz)
 			throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -88,5 +88,6 @@ public class PersistenceManagerImpl implements PersistenceManager {
 	private String filePath(String entityName, Long id) {
 		return this.baseFilePath + entityName + "_" + id + ".ser";
 	}
+        
 
 }

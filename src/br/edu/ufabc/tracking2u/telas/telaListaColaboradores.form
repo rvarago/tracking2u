@@ -84,7 +84,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="buttonCancelaListaColaboradores">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="text" type="java.lang.String" value="Voltar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelaListaColaboradoresActionPerformed"/>
@@ -110,6 +110,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirColaboradorActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

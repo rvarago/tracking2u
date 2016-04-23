@@ -1,8 +1,5 @@
 package br.edu.ufabc.tracking2u.ui;
 
-import java.util.Date;
-import java.util.List;
-
 import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.entity.Papel;
 import br.edu.ufabc.tracking2u.entity.Pendencia;
@@ -15,7 +12,8 @@ import br.edu.ufabc.tracking2u.entity.Tarefa;
  * @author rvarago
  */
 public interface UIHandler {
-	public void createColaborador(String nome, String senha, List<Papel> papeis);
+
+	public void manageColaborador(String nome, char[] senha, Papel papel, Colaborador c);
 
 	/**
 	 * Cria uma {@link Tarefa}
@@ -90,6 +88,4 @@ public interface UIHandler {
 	 *             <code>colaboradorId</code> não possua o {@link Papel#CLIENTE}
 	 */
 	public void listarTarefasPendencias(Long colaboradorId) throws IllegalAccessException;
-
-
 }

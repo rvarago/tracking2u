@@ -38,7 +38,6 @@ public class PersistenceManagerImplTest {
 
 		Colaborador colaborador = new Colaborador();
 		colaborador.setNome("Colaborador 1");
-		colaborador.setSenha("Senha do Colaborador 1");
 		colaborador.setTarefas(asList(tarefa));
 
 		this.manager.save(colaborador);

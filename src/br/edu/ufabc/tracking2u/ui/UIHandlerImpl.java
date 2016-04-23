@@ -1,8 +1,6 @@
 package br.edu.ufabc.tracking2u.ui;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
@@ -13,7 +11,6 @@ import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
-import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
 
 /**
  * Implementação padrão de {@link UIHandler}. Representa o controlador de tela.
@@ -24,16 +21,29 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManagerImpl;
  */
 public class UIHandlerImpl implements UIHandler {
 
-		private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
+	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
 
 	@Override
-	public void createColaborador(String nome, String senha, List<Papel> papeis){
+	public void manageColaborador(String nome, char[] senha, Papel papel, Colaborador c) {
 		Colaborador colaborador = new Colaborador();
 		colaborador.setNome(nome);
 		colaborador.setSenha(senha);
-		colaborador.adicionarPapel(papeis);
-		this.persist(colaborador);
-		JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso");
+		colaborador.setPapel(papel);
+		if (c == null) {
+			this.persist(colaborador);
+			JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso");
+		} else {
+			try {
+				this.manager.delete(c);
+				this.manager.save(colaborador);
+				JOptionPane.showMessageDialog(null, "Colaborador atualizado com sucesso");
+
+			} catch (IOException ex) {
+				JOptionPane.showMessageDialog(null, "Erro na atualização do colaborador");
+
+			}
+
+		}
 	}
 
 	@Override
@@ -45,9 +55,9 @@ public class UIHandlerImpl implements UIHandler {
 		} catch (ClassNotFoundException | IOException e) {
 			JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não encontrado");
 		}
-		if (!colaborador.listarPapeis().contains(Papel.GERENTE_PROJETO)) {
-                    JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não possui o Papel " 
-                            +Papel.GERENTE_PROJETO + " necessário para criar a tarefa");
+		if (colaborador.getPapel() != Papel.GERENTE_PROJETO) {
+			JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não possui o Papel "
+					+ Papel.GERENTE_PROJETO + " necessário para criar a tarefa");
 
 		}
 		Tarefa tarefa = new Tarefa();
@@ -58,7 +68,7 @@ public class UIHandlerImpl implements UIHandler {
 		tarefa.setCriador(colaborador);
 		tarefa.setDataPrometida(dataPrometida);
 		tarefa.setDataCriacao(System.currentTimeMillis());
-                
+
 		this.persist(tarefa);
 	}
 
@@ -80,7 +90,7 @@ public class UIHandlerImpl implements UIHandler {
 
 		// se a lista de papeis for formada somente pela permissão Cliente, o
 		// colaborador não poderá atribuir tarefas
-		if (responsavelAtual.listarPapeis().equals(Papel.CLIENTE)) {
+		if (responsavelAtual.getPapel() == Papel.CLIENTE) {
 			throw new IllegalArgumentException(
 					"Não é possível atribuir tarefas a outros colaboradores quando se tem o nível de acesso "
 							+ Papel.CLIENTE);
@@ -154,7 +164,7 @@ public class UIHandlerImpl implements UIHandler {
 		} catch (ClassNotFoundException | IOException e) {
 			throw new RuntimeException("Colaborador com ID " + colaboradorId + "não encontrado");
 		}
-		if (!colaborador.listarPapeis().contains(Papel.CLIENTE)) {
+		if (colaborador.getPapel() != Papel.CLIENTE) {
 			throw new IllegalAccessException("Colaborador sem a permissão de " + Papel.CLIENTE + "necessária");
 		}
 		try {

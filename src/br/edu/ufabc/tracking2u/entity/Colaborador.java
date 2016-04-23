@@ -1,7 +1,6 @@
 package br.edu.ufabc.tracking2u.entity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,9 +11,9 @@ public class Colaborador extends Entidade implements Responsavel {
 	private static final long serialVersionUID = 1L;
 
 	private String nome;
-	private String senha;
-
-	private List<Papel> papeis = new ArrayList<>();
+	private char[] senha;
+	private Papel papel;
+	
 	private List<Tarefa> tarefas = new ArrayList<>();
 	private List<Pendencia> pendencias = new ArrayList<>();
 
@@ -26,11 +25,11 @@ public class Colaborador extends Entidade implements Responsavel {
 		this.nome = nome;
 	}
 
-	public String getSenha() {
+	public char[] getSenha() {
 		return this.senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(char[] senha) {
 		this.senha = senha;
 	}
 
@@ -50,15 +49,13 @@ public class Colaborador extends Entidade implements Responsavel {
 		this.pendencias = pendencias;
 	}
 
-	@Override
-	public void adicionarPapel(List<Papel> papeis) {
-		this.papeis = papeis;
-
+	public Papel getPapel() {
+		return this.papel;
 	}
 
-	@Override
-	public Collection<Papel> listarPapeis() {
-		return this.papeis;
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
+
 
 }

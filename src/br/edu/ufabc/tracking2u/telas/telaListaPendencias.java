@@ -73,9 +73,11 @@ public class telaListaPendencias extends javax.swing.JFrame {
 
 		this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		this.tablePendencias.setModel(new javax.swing.table.DefaultTableModel(new Object[][] { { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null } },
-				new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
+		this.tablePendencias
+				.setModel(new javax.swing.table.DefaultTableModel(
+						new Object[][] { { null, null, null, null }, { null, null, null, null },
+								{ null, null, null, null }, { null, null, null, null } },
+						new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
 		this.jScrollPane1.setViewportView(this.tablePendencias);
 
 		this.buttonSair.setText("Sair");
@@ -90,14 +92,17 @@ public class telaListaPendencias extends javax.swing.JFrame {
 		this.getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
 				.createSequentialGroup().addContainerGap()
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(this.buttonSair).addComponent(
-						this.jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+						.addComponent(this.buttonSair).addComponent(this.jScrollPane1,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(19, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(12, 12, 12)
-						.addComponent(this.jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(this.buttonSair)
-						.addContainerGap()));
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(12, 12, 12)
+								.addComponent(this.jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292,
+										Short.MAX_VALUE)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(this.buttonSair).addContainerGap()));
 
 		this.pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -129,13 +134,17 @@ public class telaListaPendencias extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaListaPendencias.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		}
 		// </editor-fold>
 

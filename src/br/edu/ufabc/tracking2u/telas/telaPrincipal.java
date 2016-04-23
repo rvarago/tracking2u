@@ -5,6 +5,7 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
+import br.edu.ufabc.tracking2u.entity.Colaborador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,16 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
+	private telaLogin telaAnterior;
 
 	/**
 	 * Creates new form telaPrincipal
 	 */
 	public telaPrincipal() {
+		this.initComponents();
+	}
+
+	public telaPrincipal(Colaborador c) {
 		this.initComponents();
 		try {
 			this.carregaListaTarefas();
@@ -74,164 +80,189 @@ public class telaPrincipal extends javax.swing.JFrame {
 	 */
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		this.jMenuItem1 = new javax.swing.JMenuItem();
-		this.jScrollPane1 = new javax.swing.JScrollPane();
-		this.tabelaTarefas = new javax.swing.JTable();
-		this.buttonCriar = new javax.swing.JButton();
-		this.buttonSair = new javax.swing.JButton();
-		this.buttonEditar = new javax.swing.JButton();
-		this.buttonExcluir = new javax.swing.JButton();
-		this.jMenuBar1 = new javax.swing.JMenuBar();
-		this.menuTarefas = new javax.swing.JMenu();
-		this.menuTarefaCadastrar = new javax.swing.JMenuItem();
-		this.menuTarefaListar = new javax.swing.JMenuItem();
-		this.menuColaboradores = new javax.swing.JMenu();
-		this.menuColaboradorCadastrar = new javax.swing.JMenuItem();
-		this.menuColaboradorListar = new javax.swing.JMenuItem();
+		jMenuItem1 = new javax.swing.JMenuItem();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		tabelaTarefas = new javax.swing.JTable();
+		buttonCriar = new javax.swing.JButton();
+		buttonSair = new javax.swing.JButton();
+		buttonEditar = new javax.swing.JButton();
+		buttonExcluir = new javax.swing.JButton();
+		buttonAlterarUsuario = new javax.swing.JButton();
+		jMenuBar1 = new javax.swing.JMenuBar();
+		menuTarefas = new javax.swing.JMenu();
+		menuTarefaCadastrar = new javax.swing.JMenuItem();
+		menuTarefaListar = new javax.swing.JMenuItem();
+		menuColaboradores = new javax.swing.JMenu();
+		menuListarColaboradores = new javax.swing.JMenuItem();
+		menuCadastrarColaboradores = new javax.swing.JMenuItem();
 
-		this.jMenuItem1.setText("jMenuItem1");
+		jMenuItem1.setText("jMenuItem1");
 
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		this.setTitle("Tracking 2U");
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle("Tracking 2U");
 
-		this.tabelaTarefas.setModel(new javax.swing.table.DefaultTableModel(new Object[][] { { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null } },
-				new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
-		this.jScrollPane1.setViewportView(this.tabelaTarefas);
+		tabelaTarefas
+				.setModel(new javax.swing.table.DefaultTableModel(
+						new Object[][] { { null, null, null, null }, { null, null, null, null },
+								{ null, null, null, null }, { null, null, null, null } },
+						new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
+		jScrollPane1.setViewportView(tabelaTarefas);
 
-		this.buttonCriar.setText("Criar");
-		this.buttonCriar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonCriar.setText("Criar");
+		buttonCriar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.buttonCriarActionPerformed(evt);
+				buttonCriarActionPerformed(evt);
 			}
 		});
 
-		this.buttonSair.setText("Sair");
-		this.buttonSair.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonSair.setText("Sair");
+		buttonSair.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.buttonSairActionPerformed(evt);
+				buttonSairActionPerformed(evt);
 			}
 		});
 
-		this.buttonEditar.setText("Editar");
-		this.buttonEditar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonEditar.setText("Editar");
+		buttonEditar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.buttonEditarActionPerformed(evt);
+				buttonEditarActionPerformed(evt);
 			}
 		});
 
-		this.buttonExcluir.setText("Excluir");
-		this.buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonExcluir.setText("Excluir");
+		buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.buttonExcluirActionPerformed(evt);
+				buttonExcluirActionPerformed(evt);
 			}
 		});
 
-		this.menuTarefas.setText("Tarefas");
-
-		this.menuTarefaCadastrar.setText("Cadastrar");
-		this.menuTarefaCadastrar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonAlterarUsuario.setText("Alterar Usuário");
+		buttonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.menuTarefaCadastrarActionPerformed(evt);
+				buttonAlterarUsuarioActionPerformed(evt);
 			}
 		});
-		this.menuTarefas.add(this.menuTarefaCadastrar);
 
-		this.menuTarefaListar.setText("Listar");
-		this.menuTarefaListar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		menuTarefas.setText("Tarefas");
+
+		menuTarefaCadastrar.setText("Cadastrar");
+		menuTarefaCadastrar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.menuTarefaListarActionPerformed(evt);
+				menuTarefaCadastrarActionPerformed(evt);
 			}
 		});
-		this.menuTarefas.add(this.menuTarefaListar);
+		menuTarefas.add(menuTarefaCadastrar);
 
-		this.jMenuBar1.add(this.menuTarefas);
-
-		this.menuColaboradores.setText("Colaboradores");
-
-		this.menuColaboradorCadastrar.setText("Cadastrar");
-		this.menuColaboradorCadastrar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		menuTarefaListar.setText("Listar");
+		menuTarefaListar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.menuColaboradorCadastrarActionPerformed(evt);
+				menuTarefaListarActionPerformed(evt);
 			}
 		});
-		this.menuColaboradores.add(this.menuColaboradorCadastrar);
+		menuTarefas.add(menuTarefaListar);
 
-		this.menuColaboradorListar.setText("Listar");
-		this.menuColaboradorListar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		jMenuBar1.add(menuTarefas);
+
+		menuColaboradores.setText("Colaboradores");
+		menuColaboradores.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaPrincipal.this.menuColaboradorListarActionPerformed(evt);
+				menuColaboradoresActionPerformed(evt);
 			}
 		});
-		this.menuColaboradores.add(this.menuColaboradorListar);
 
-		this.jMenuBar1.add(this.menuColaboradores);
+		menuListarColaboradores.setText("Listar");
+		menuListarColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				menuListarColaboradoresActionPerformed(evt);
+			}
+		});
+		menuColaboradores.add(menuListarColaboradores);
 
-		this.setJMenuBar(this.jMenuBar1);
+		menuCadastrarColaboradores.setText("Cadastrar");
+		menuCadastrarColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				menuCadastrarColaboradoresActionPerformed(evt);
+			}
+		});
+		menuColaboradores.add(menuCadastrarColaboradores);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
-		this.getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								layout.createSequentialGroup()
-										.addGap(18, 18,
-												18)
-										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(layout.createSequentialGroup().addGap(6, 6, 6).addComponent(this.buttonCriar)
-														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-														.addComponent(this.buttonEditar)
-														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-														.addComponent(this.buttonExcluir)
-														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(this.buttonSair).addGap(32, 32, 32))
-						.addGroup(layout.createSequentialGroup().addComponent(this.jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-								733, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(20, Short.MAX_VALUE)))));
+		jMenuBar1.add(menuColaboradores);
+
+		setJMenuBar(jMenuBar1);
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addGap(18, 18, 18)
+						.addGroup(layout
+								.createParallelGroup(
+										javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup().addGap(6, 6, 6).addComponent(buttonCriar)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(buttonEditar)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(buttonExcluir)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(buttonAlterarUsuario).addGap(18, 18, 18).addComponent(buttonSair)
+										.addGap(32, 32, 32))
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(20, Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addGap(16, 16, 16)
-						.addComponent(this.jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474,
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(this.buttonCriar)
-						.addComponent(this.buttonSair).addComponent(this.buttonEditar).addComponent(this.buttonExcluir))
-				.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(buttonCriar).addComponent(buttonSair).addComponent(buttonEditar)
+								.addComponent(buttonExcluir).addComponent(buttonAlterarUsuario))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		this.pack();
+		pack();
 	}// </editor-fold>//GEN-END:initComponents
+
+	private void buttonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonAlterarUsuarioActionPerformed
+		// TODO add your handling code here:
+		this.dispose();
+		telaLogin tela = new telaLogin();
+		tela.setVisible(true);
+		tela.setLocationRelativeTo(null);
+	}// GEN-LAST:event_buttonAlterarUsuarioActionPerformed
+
+	private void menuColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuColaboradoresActionPerformed
+		// TODO add your handling code here:
+
+	}// GEN-LAST:event_menuColaboradoresActionPerformed
+
+	private void menuCadastrarColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuCadastrarColaboradoresActionPerformed
+		// TODO add your handling code here:
+		telaCadastroColaborador tela = new telaCadastroColaborador(this);
+		tela.setVisible(true);
+		tela.setLocationRelativeTo(null);
+	}// GEN-LAST:event_menuCadastrarColaboradoresActionPerformed
+
+	private void menuListarColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuListarColaboradoresActionPerformed
+		// TODO add your handling code here:
+		telaListaColaboradores tela = new telaListaColaboradores(this);
+		tela.setVisible(true);
+		tela.setLocationRelativeTo(null);
+	}// GEN-LAST:event_menuListarColaboradoresActionPerformed
 
 	private void menuTarefaListarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuTarefaListarActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_menuTarefaListarActionPerformed
-
-	private void menuColaboradorCadastrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuColaboradorCadastrarActionPerformed
-		// TODO add your handling code here:
-		this.setEnabled(false);
-		new telaCadastroColaborador().setVisible(true);
-	}// GEN-LAST:event_menuColaboradorCadastrarActionPerformed
 
 	private void menuTarefaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuTarefaCadastrarActionPerformed
 		// TODO add your handling code here:
 		this.setEnabled(false);
 		new telaCadastroTarefa(this).setVisible(true);
 	}// GEN-LAST:event_menuTarefaCadastrarActionPerformed
-
-	private void menuColaboradorListarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuColaboradorListarActionPerformed
-		// TODO add your handling code here:
-		this.setEnabled(false);
-		new telaListaColaboradores().setVisible(true);
-	}// GEN-LAST:event_menuColaboradorListarActionPerformed
 
 	private void buttonCriarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCriarActionPerformed
 		// TODO add your handling code here:
@@ -292,13 +323,17 @@ public class telaPrincipal extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		}
 		// </editor-fold>
 
@@ -313,6 +348,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton buttonAlterarUsuario;
 	private javax.swing.JButton buttonCriar;
 	private javax.swing.JButton buttonEditar;
 	private javax.swing.JButton buttonExcluir;
@@ -320,9 +356,9 @@ public class telaPrincipal extends javax.swing.JFrame {
 	private javax.swing.JMenuBar jMenuBar1;
 	private javax.swing.JMenuItem jMenuItem1;
 	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JMenuItem menuColaboradorCadastrar;
-	private javax.swing.JMenuItem menuColaboradorListar;
+	private javax.swing.JMenuItem menuCadastrarColaboradores;
 	private javax.swing.JMenu menuColaboradores;
+	private javax.swing.JMenuItem menuListarColaboradores;
 	private javax.swing.JMenuItem menuTarefaCadastrar;
 	private javax.swing.JMenuItem menuTarefaListar;
 	private javax.swing.JMenu menuTarefas;

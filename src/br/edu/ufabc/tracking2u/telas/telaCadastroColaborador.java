@@ -5,10 +5,6 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
@@ -17,6 +13,7 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
 import br.edu.ufabc.tracking2u.ui.UIHandler;
 import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -24,7 +21,8 @@ import br.edu.ufabc.tracking2u.ui.UIHandlerImpl;
  */
 public class telaCadastroColaborador extends javax.swing.JFrame {
 	UIHandler uihandler = new UIHandlerImpl();
-	telaListaColaboradores telaAnterior;
+	telaListaColaboradores telaAnteriorLista;
+	telaPrincipal telaAnteriorPrincipal;
 	Colaborador colaborador;
 	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
 
@@ -33,36 +31,39 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 	 */
 	public telaCadastroColaborador() {
 		initComponents();
-		carregaListaPapeis();
+		carregaPermissoes();
+	}
+
+	public telaCadastroColaborador(telaPrincipal telaAnterior) {
+		this();
+		this.telaAnteriorPrincipal = telaAnterior;
+
 	}
 
 	public telaCadastroColaborador(telaListaColaboradores telaAnterior) {
 		this();
-		this.telaAnterior = telaAnterior;
+		this.telaAnteriorLista = telaAnterior;
 
 	}
 
 	public telaCadastroColaborador(telaListaColaboradores telaLista, Colaborador c) {
 		this();
-		this.telaAnterior = telaLista;
+		this.telaAnteriorLista = telaLista;
 		this.colaborador = c;
-                carregaDados(c);
+		textNome.setText(c.getNome() + "");
+		textSenha.setText(c.getSenha() + "");
+		comboboxPapel.setSelectedItem(c.getPapel());
 	}
-        
-        public void carregaDados(Colaborador c){
-                textNome.setText(c.getNome()+"");
-                textSenha.setText(c.getSenha()+"");
-                listPapeis.setSelectedIndices(c.listarPapeis());
-        }
 
-	public void carregaListaPapeis() {
-		DefaultListModel model = new DefaultListModel();
-		Papel[] papeis = Papel.values();
-		for (int i = 0; i < papeis.length; ++i) {
-			model.addElement(papeis[i].getNome());
-		}
-		listPapeis.setModel(model);
-
+	public void carregaPermissoes() {
+		DefaultComboBoxModel model = new DefaultComboBoxModel();
+		model.addElement("");
+		model.addElement(Papel.CLIENTE);
+		model.addElement(Papel.ANALISTA_TESTE);
+		model.addElement(Papel.DESENVOLVEDOR);
+		model.addElement(Papel.ANALISTA_SISTEMA);
+		model.addElement(Papel.GERENTE_PROJETO);
+		comboboxPapel.setModel(model);
 	}
 
 	/**
@@ -72,9 +73,12 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
+		buttonGroup = new javax.swing.ButtonGroup();
 		buttonSalvarColaborador = new javax.swing.JButton();
 		buttonCancelarColaborador = new javax.swing.JButton();
 		jLabel1 = new javax.swing.JLabel();
@@ -82,13 +86,14 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 		jLabel3 = new javax.swing.JLabel();
 		textNome = new javax.swing.JTextField();
 		textSenha = new javax.swing.JPasswordField();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		listPapeis = new javax.swing.JList<>();
+		comboboxPapel = new javax.swing.JComboBox<>();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle("Cadastro de Colaborador");
 
 		buttonSalvarColaborador.setText("Salvar");
 		buttonSalvarColaborador.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonSalvarColaboradorActionPerformed(evt);
 			}
@@ -96,6 +101,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 
 		buttonCancelarColaborador.setText("Cancelar");
 		buttonCancelarColaborador.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonCancelarColaboradorActionPerformed(evt);
 			}
@@ -105,115 +111,71 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 
 		jLabel2.setText("Senha");
 
-		jLabel3.setText("Permissões");
+		jLabel3.setText("Permissão");
 
-		listPapeis.setModel(new javax.swing.AbstractListModel<String>() {
-			String[] strings = { "item1", "item2", "item3" };
-
-			public int getSize() {
-				return strings.length;
-			}
-
-			public String getElementAt(int i) {
-				return strings[i];
-			}
-		});
-		jScrollPane1.setViewportView(listPapeis);
+		comboboxPapel.setModel(
+				new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(
-						javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(40, 40, 40)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(textSenha).addComponent(jLabel1)
-								.addComponent(jLabel2).addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
-										108, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(6, 6, 6).addComponent(jScrollPane1,
-										javax.swing.GroupLayout.PREFERRED_SIZE, 141,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addComponent(jLabel3))
-						.addGap(61, 61, 61))
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(buttonSalvarColaborador)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(buttonCancelarColaborador).addGap(73, 73, 73)));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-						.createSequentialGroup().addGap(28, 28, 28).addGroup(layout.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(jLabel3)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jScrollPane1,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGroup(layout.createSequentialGroup().addComponent(jLabel1)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(28, 28, 28).addComponent(jLabel2)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(64, 64, 64)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel2)
+										.addGroup(layout
+												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+												.addComponent(textNome, javax.swing.GroupLayout.Alignment.TRAILING)
+												.addComponent(textSenha, javax.swing.GroupLayout.Alignment.TRAILING)
+												.addComponent(comboboxPapel, javax.swing.GroupLayout.PREFERRED_SIZE,
+														128, javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(jLabel1).addComponent(jLabel3)))
+						.addGroup(
+								layout.createSequentialGroup().addGap(35, 35, 35).addComponent(buttonSalvarColaborador)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+										.addComponent(buttonCancelarColaborador)))
+				.addContainerGap(35, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				javax.swing.GroupLayout.Alignment.TRAILING,
+				layout.createSequentialGroup().addContainerGap(15, Short.MAX_VALUE).addComponent(jLabel1)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(18, 18, 18).addComponent(jLabel2)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(18, 18, 18).addComponent(jLabel3)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(comboboxPapel, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(39, 39, 39)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(buttonSalvarColaborador).addComponent(buttonCancelarColaborador))
-						.addGap(23, 23, 23)));
+						.addGap(27, 27, 27)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void buttonSalvarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonSalvarColaboradorActionPerformed
 		String login = textNome.getText();
-		String senha = textSenha.getPassword().toString();
-		List<String> papeisLista = listPapeis.getSelectedValuesList();
-
-		if (login.isEmpty() || senha.isEmpty() || papeisLista.isEmpty()) {
+		if (login.isEmpty() || textSenha.getPassword().length == 0 || comboboxPapel.getSelectedItem() == "") {
 			JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
 		} else {
-			List<Papel> papeis = new ArrayList<>();
-			for (String s : papeisLista) {
-				switch (s) {
-				case "Gerente de Projeto":
-					papeis.add(Papel.GERENTE_PROJETO);
-					break;
-				case "Analista de Sistema":
-					papeis.add(Papel.ANALISTA_SISTEMA);
-					break;
-				case "Desenvolvedor":
-					papeis.add(Papel.DESENVOLVEDOR);
-					break;
-				case "Analista de Teste":
-					papeis.add(Papel.ANALISTA_TESTE);
-					break;
-				case "Cliente":
-					papeis.add(Papel.CLIENTE);
-					break;
-				}
-
-				uihandler.createColaborador(login, senha, papeis);
-                                
-				this.dispose();
-                                telaAnterior.carregaListaColaboradores();
-				telaAnterior.setEnabled(true);
-			}
+			char[] senha = textSenha.getPassword();
+			Papel papel = (Papel) comboboxPapel.getSelectedItem();
+			uihandler.manageColaborador(login, senha, papel, this.colaborador);
+			this.dispose();
+			telaAnteriorLista.carregaListaColaboradores();
+			telaAnteriorLista.setEnabled(true);
 		}
+
 	}
 
 	private void buttonCancelarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarColaboradorActionPerformed
 		this.dispose();
-		telaAnterior.setEnabled(true);
+		telaAnteriorLista.setEnabled(true);
 	}
 
 	/**
@@ -254,6 +216,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				new telaCadastroColaborador().setVisible(true);
 			}
@@ -262,12 +225,12 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton buttonCancelarColaborador;
+	private javax.swing.ButtonGroup buttonGroup;
 	private javax.swing.JButton buttonSalvarColaborador;
+	private javax.swing.JComboBox<String> comboboxPapel;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JList<String> listPapeis;
 	private javax.swing.JTextField textNome;
 	private javax.swing.JPasswordField textSenha;
 	// End of variables declaration//GEN-END:variables

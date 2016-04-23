@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JMenuItem" name="jMenuItem1">
       <Properties>
@@ -36,21 +36,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Colaboradores"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuColaboradoresActionPerformed"/>
+          </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuColaboradorCadastrar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuColaboradorCadastrarActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuColaboradorListar">
+            <MenuItem class="javax.swing.JMenuItem" name="menuListarColaboradores">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuColaboradorListarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListarColaboradoresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastrarColaboradores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastrarColaboradoresActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -93,6 +96,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonExcluir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="buttonAlterarUsuario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonSair" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
@@ -115,6 +120,7 @@
                   <Component id="buttonSair" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAlterarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -200,6 +206,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonAlterarUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alterar Usu&#xe1;rio"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAlterarUsuarioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

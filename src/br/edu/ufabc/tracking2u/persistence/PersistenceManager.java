@@ -22,5 +22,7 @@ public interface PersistenceManager {
 
 	public <E extends Entidade> List<? super E> list(Class<? extends E> clazz)
 			throws FileNotFoundException, IOException, ClassNotFoundException;
+        
+        
 
 }

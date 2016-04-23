@@ -17,6 +17,21 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -42,46 +57,51 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <Component id="buttonCadastrarColaboradores" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buttonLogin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textSenha" min="-2" pref="157" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="labelNome" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labelSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="textNome" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="textUsuario" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="textSenha" min="-2" pref="157" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="44" pref="184" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="labelNome" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="textNome" min="-2" max="-2" attributes="0"/>
+              <Component id="textUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="labelSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textSenha" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="buttonLogin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buttonLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonCadastrarColaboradores" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,8 +111,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textNome">
     </Component>
     <Component class="javax.swing.JLabel" name="labelSenha">
       <Properties>
@@ -108,6 +126,16 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="textSenha">
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonCadastrarColaboradores">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar colaboradores"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCadastrarColaboradoresActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textUsuario">
     </Component>
   </SubComponents>
 </Form>
