@@ -47,29 +47,35 @@ public class UIHandlerImpl implements UIHandler {
 	}
 
 	@Override
-	public void createTarefa(String nome, String descricao, Long dataPrometida, Long criadorId)
-			throws IllegalArgumentException {
-		Colaborador colaborador = new Colaborador();
-		try {
-			colaborador = this.manager.find(criadorId, Colaborador.class);
-		} catch (ClassNotFoundException | IOException e) {
-			JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não encontrado");
-		}
-		if (colaborador.getPapel() != Papel.GERENTE_PROJETO) {
-			JOptionPane.showMessageDialog(null, "Colaborador com ID " + criadorId + " não possui o Papel "
-					+ Papel.GERENTE_PROJETO + " necessário para criar a tarefa");
-
-		}
+	public void manageTarefa(String nome, String descricao, Long dataPrometida, Colaborador colaborador,
+			Tarefa tarefaUpdate) throws IllegalArgumentException {
 		Tarefa tarefa = new Tarefa();
 		tarefa.setNome(nome);
 		tarefa.setDescricao(descricao);
-		tarefa.setStatus(StatusTarefa.AGUARDANDO_ANALISE);
-		tarefa.setResponsavel(colaborador);
-		tarefa.setCriador(colaborador);
 		tarefa.setDataPrometida(dataPrometida);
-		tarefa.setDataCriacao(System.currentTimeMillis());
 
-		this.persist(tarefa);
+		if (tarefaUpdate == null) {
+			tarefa.setCriador(colaborador);
+			tarefa.setDataCriacao(System.currentTimeMillis());
+			tarefa.setStatus(StatusTarefa.AGUARDANDO_ANALISE);
+			this.persist(tarefa);
+
+			JOptionPane.showMessageDialog(null, "Tarefa cadastrada com sucesso");
+
+		} else {
+			tarefa.setCriador(tarefaUpdate.getCriador());
+			tarefa.setDataCriacao(tarefaUpdate.getDataCriacao());
+			tarefa.setStatus(tarefaUpdate.getStatus());
+			this.manager.delete(tarefaUpdate);
+			try {
+				this.manager.save(tarefa);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso");
+
+		}
+
 	}
 
 	@Override

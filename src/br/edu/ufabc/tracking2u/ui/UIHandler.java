@@ -25,13 +25,13 @@ public interface UIHandler {
 	 * 
 	 * @param dataPrometida
 	 *            data da previsão de finalização da tarefa
-	 * @param criadorId
+	 * @param colaborador
 	 *            responsável pela criação, deve ser um colaborador com o
 	 *            {@link Papel#GERENTE_PROJETO}.
 	 * @throws IllegalArgumentException
 	 *             caso o criador não possua a permissão necessária
 	 */
-	public void createTarefa(String nome, String descricao, Long dataPrometida, Long criadorId)
+	public void manageTarefa(String nome, String descricao, Long dataPrometida, Colaborador colaborador, Tarefa tarefa)
 			throws IllegalArgumentException;
 
 	/**

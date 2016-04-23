@@ -5,6 +5,7 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
+import br.edu.ufabc.tracking2u.entity.Colaborador;
 import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Tarefa;
@@ -23,6 +24,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	private telaPrincipal telaAnterior;
 	private UIHandler uihandler = new UIHandlerImpl();
 	Tarefa tarefa;
+	Colaborador colaborador;
 
 	private telaCadastroTarefa() {
 		this.initComponents();
@@ -33,6 +35,12 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		this.telaAnterior = telaAnterior;
 	}
 
+	public telaCadastroTarefa(telaPrincipal telaAnterior, Colaborador colaborador) {
+		this();
+		this.telaAnterior = telaAnterior;
+		this.colaborador = colaborador;
+	}
+
 	/**
 	 * Creates new form telaCadastroColaborador
 	 */
@@ -41,6 +49,9 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		this();
 		this.telaAnterior = telaAnterior;
 		this.tarefa = t;
+		textNome.setText(t.getNome() + "");
+		textDesc.setText(t.getDescricao() + "");
+		textDataPrevisao.setText(t.getDataPrometida().toString());
 
 	}
 
@@ -52,166 +63,129 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		this.buttonCancelarCadastro = new javax.swing.JButton();
-		this.buttonSalvarCadastro = new javax.swing.JButton();
-		this.labelNome = new javax.swing.JLabel();
-		this.labelDesc = new javax.swing.JLabel();
-		this.labelDataPrevisao = new javax.swing.JLabel();
-		this.textNome = new javax.swing.JTextField();
-		this.scrollTextDesc = new javax.swing.JScrollPane();
-		this.textDesc = new javax.swing.JTextArea();
-		this.textDataPrevisao = new javax.swing.JTextField();
-		this.jButton1 = new javax.swing.JButton();
-		this.comboboxStatus = new javax.swing.JComboBox<>();
-		this.jLabel1 = new javax.swing.JLabel();
+		buttonCancelarCadastro = new javax.swing.JButton();
+		buttonSalvarCadastro = new javax.swing.JButton();
+		labelNome = new javax.swing.JLabel();
+		labelDesc = new javax.swing.JLabel();
+		labelDataPrevisao = new javax.swing.JLabel();
+		textNome = new javax.swing.JTextField();
+		scrollTextDesc = new javax.swing.JScrollPane();
+		textDesc = new javax.swing.JTextArea();
+		textDataPrevisao = new javax.swing.JTextField();
+		buttonPendencias = new javax.swing.JButton();
 
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		this.setTitle("Cadastro de Tarefa");
-		this.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Cadastro de Tarefa");
+		addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosed(java.awt.event.WindowEvent evt) {
-				telaCadastroTarefa.this.formWindowClosed(evt);
+				formWindowClosed(evt);
 			}
 		});
 
-		this.buttonCancelarCadastro.setText("Cancelar");
-		this.buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
-			@Override
+		buttonCancelarCadastro.setText("Cancelar");
+		buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				telaCadastroTarefa.this.buttonCancelarCadastroMouseClicked(evt);
+				buttonCancelarCadastroMouseClicked(evt);
 			}
 		});
-		this.buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.buttonCancelarCadastroActionPerformed(evt);
+				buttonCancelarCadastroActionPerformed(evt);
 			}
 		});
 
-		this.buttonSalvarCadastro.setText("Salvar");
-		this.buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonSalvarCadastro.setText("Salvar");
+		buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.buttonSalvarCadastroActionPerformed(evt);
+				buttonSalvarCadastroActionPerformed(evt);
 			}
 		});
 
-		this.labelNome.setText("Nome");
+		labelNome.setText("Nome");
 
-		this.labelDesc.setText("Descrição");
+		labelDesc.setText("Descrição");
 
-		this.labelDataPrevisao.setText("Data de Previsão de Término");
+		labelDataPrevisao.setText("Data de Previsão de Término");
 
-		this.textNome.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		textNome.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.textNomeActionPerformed(evt);
+				textNomeActionPerformed(evt);
 			}
 		});
 
-		this.textDesc.setColumns(20);
-		this.textDesc.setRows(5);
-		this.scrollTextDesc.setViewportView(this.textDesc);
+		textDesc.setColumns(20);
+		textDesc.setRows(5);
+		scrollTextDesc.setViewportView(textDesc);
 
-		this.textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.textDataPrevisaoActionPerformed(evt);
+				textDataPrevisaoActionPerformed(evt);
 			}
 		});
 
-		this.jButton1.setText("Associar Pendências");
-		this.jButton1.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonPendencias.setText("Pendências Associadas");
+		buttonPendencias.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.jButton1ActionPerformed(evt);
+				buttonPendenciasActionPerformed(evt);
 			}
 		});
 
-		this.comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "Aguardando", "Em Desenvolvimento", "Em Testes", "Finalizado" }));
-		this.comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
-			@Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaCadastroTarefa.this.comboboxStatusActionPerformed(evt);
-			}
-		});
-
-		this.jLabel1.setText("Status");
-
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
-		this.getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(this.jLabel1).addGap(105, 105, 105))
-				.addGroup(layout.createSequentialGroup().addGap(23, 23, 23)
-						.addGroup(layout
-								.createParallelGroup(
-										javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
-										.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
-												151, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(0, 0, Short.MAX_VALUE))
-								.addGroup(layout.createSequentialGroup()
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout.createSequentialGroup().addGap(23, 23, 23)
 										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(layout.createSequentialGroup()
-														.addGroup(layout
-																.createParallelGroup(
-																		javax.swing.GroupLayout.Alignment.LEADING)
-																.addComponent(this.labelDesc)
-																.addComponent(this.labelDataPrevisao))
-														.addGap(0, 0, Short.MAX_VALUE))
-												.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-														layout.createSequentialGroup().addGap(0, 16, Short.MAX_VALUE)
-																.addComponent(this.jButton1)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(this.buttonSalvarCadastro)))
-										.addComponent(this.buttonCancelarCadastro).addContainerGap(15, Short.MAX_VALUE))
-								.addGroup(layout.createSequentialGroup().addComponent(this.labelNome)
-										.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(this.scrollTextDesc)
-												.addGroup(layout.createSequentialGroup()
-														.addComponent(this.textNome,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 144,
-																javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGroup(layout.createSequentialGroup().addGap(0, 2, Short.MAX_VALUE)
+														.addComponent(buttonPendencias)
 														.addPreferredGap(
-																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(this.comboboxStatus,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 137,
-																javax.swing.GroupLayout.PREFERRED_SIZE)))
-										.addGap(25, 25, 25)))));
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(buttonSalvarCadastro)
+														.addComponent(buttonCancelarCadastro)
+														.addContainerGap(
+																12, Short.MAX_VALUE))
+												.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+														layout.createSequentialGroup().addComponent(scrollTextDesc)
+																.addGap(25, 25, 25))
+												.addGroup(layout.createSequentialGroup().addGroup(layout
+														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+														.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
+																144, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(labelNome)).addContainerGap(
+																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addGroup(layout.createSequentialGroup().addGroup(layout
+														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+														.addComponent(labelDataPrevisao).addComponent(labelDesc)
+														.addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
+																.addComponent(textDataPrevisao,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 151,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)))
+														.addGap(0, 0, Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addGap(20, 20, 20)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(this.labelNome).addComponent(this.jLabel1))
-						.addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(this.textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.comboboxStatus))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-						.addComponent(this.labelDesc).addGap(18, 18, 18)
-						.addComponent(this.scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE,
+						.addComponent(labelNome).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(34, 34, 34).addComponent(this.labelDataPrevisao)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(this.textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+						.addComponent(labelDesc).addGap(18, 18, 18)
+						.addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(42, 42, 42)
+						.addGap(37, 37, 37).addComponent(labelDataPrevisao)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(54, 54, 54)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(this.buttonCancelarCadastro).addComponent(this.buttonSalvarCadastro)
-								.addComponent(this.jButton1))
+								.addComponent(buttonCancelarCadastro).addComponent(buttonSalvarCadastro)
+								.addComponent(buttonPendencias))
 						.addGap(23, 23, 23)));
 
-		this.pack();
+		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboboxStatusActionPerformed
@@ -219,7 +193,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
 	}// GEN-LAST:event_comboboxStatusActionPerformed
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+	private void buttonPendenciasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 		this.setEnabled(false);
 		new telaListaPendencias().setVisible(true);
@@ -228,7 +202,6 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
 	private void buttonCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelarCadastroActionPerformed
 		this.dispose();
-
 		this.telaAnterior.setEnabled(true);
 
 	}// GEN-LAST:event_buttonCancelarCadastroActionPerformed
@@ -238,6 +211,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		String nome = this.textNome.getText();
 		String desc = this.textDesc.getText();
 		Long data;
+
 		try {
 			data = Long.valueOf(this.textDataPrevisao.getText());
 
@@ -245,13 +219,23 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(this, "Data inválida");
 			return;
 		}
+		if (data.toString().length() != 8) {
+			JOptionPane.showMessageDialog(this, "Informe uma data no formato DDMMYYYY");
+			return;
+		}
+
+		if (nome.isEmpty() || desc.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+			return;
+		}
 
 		// como passar o colaborador atual?
-		this.uihandler.createTarefa(nome, desc, data, 2L);
-		JOptionPane.showMessageDialog(this, "Tarefa cadastrada com sucesso");
+		this.uihandler.manageTarefa(nome, desc, data, this.colaborador, this.tarefa);
 		this.dispose();
-		this.telaAnterior.setEnabled(true);
-	}// GEN-LAST:event_buttonSalvarCadastroActionPerformed
+		telaAnterior.carregaListaTarefas();
+		telaAnterior.setEnabled(true);
+
+	}
 
 	private void formWindowClosed(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosed
 		// tratamento para operações de fechamento da janela
@@ -325,10 +309,8 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton buttonCancelarCadastro;
+	private javax.swing.JButton buttonPendencias;
 	private javax.swing.JButton buttonSalvarCadastro;
-	private javax.swing.JComboBox<String> comboboxStatus;
-	private javax.swing.JButton jButton1;
-	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel labelDataPrevisao;
 	private javax.swing.JLabel labelDesc;
 	private javax.swing.JLabel labelNome;
