@@ -6,6 +6,7 @@
 package br.edu.ufabc.tracking2u.telas;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
+import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 import javax.swing.JOptionPane;
 
 import br.edu.ufabc.tracking2u.entity.Tarefa;
@@ -234,9 +235,9 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		}
 
 		// como passar o colaborador atual?
-		this.uihandler.manageTarefa(nome, desc, data, this.colaborador, this.tarefa);
+		this.uihandler.manageTarefa(nome, desc, data, this.colaborador, this.tarefa, StatusTarefa.AGUARDANDO_ANALISE);
 		this.dispose();
-		telaAnterior.carregaListaTarefas();
+		telaAnterior.carregaListaTarefas(this.colaborador);
 		telaAnterior.setEnabled(true);
 
 	}

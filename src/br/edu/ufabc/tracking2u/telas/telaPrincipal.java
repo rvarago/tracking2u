@@ -7,12 +7,15 @@ package br.edu.ufabc.tracking2u.telas;
 
 import br.edu.ufabc.tracking2u.entity.Colaborador;
 import br.edu.ufabc.tracking2u.entity.Papel;
+import br.edu.ufabc.tracking2u.entity.StatusTarefa;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +44,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 	public telaPrincipal(Colaborador c) {
 		this.initComponents();
-		this.carregaListaTarefas();
+		this.carregaListaTarefas(c);
 		this.colaborador = c;
 		if (c.getPapel() != Papel.GERENTE_PROJETO) {
 			buttonCriar.setVisible(false);
@@ -50,7 +53,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 		}
 	}
 
-	public void carregaListaTarefas() {
+	public void carregaListaTarefas(Colaborador colaborador) {
 		List<? super Tarefa> listaTarefas = new ArrayList<Tarefa>();
 		try {
 			listaTarefas = this.manager.list(Tarefa.class);
@@ -71,8 +74,28 @@ public class telaPrincipal extends javax.swing.JFrame {
 		}
 		for (int i = 0; i < listaTarefas.size(); i++) {
 			Tarefa t = (Tarefa) listaTarefas.get(i);
-			modelo.addRow(new String[] { t.getId() + "", t.getNome(), t.getDescricao(), t.getStatus() + "",
-					t.getDataPrometida() + "" });
+			if (((t.getStatus().equals(StatusTarefa.AGUARDANDO_ANALISE) || t.getStatus().equals(StatusTarefa.EM_ANALISE)
+					|| t.getStatus().equals(StatusTarefa.AGUARDANDO_DESENVOLVIMENTO))
+					&& (colaborador.getPapel().equals(Papel.ANALISTA_SISTEMA)))
+
+					|| ((t.getStatus().equals(StatusTarefa.AGUARDANDO_DESENVOLVIMENTO)
+							|| t.getStatus().equals(StatusTarefa.AGUARDANDO_TESTE)
+							|| t.getStatus().equals(StatusTarefa.EM_DESENVOLVIMENTO))
+							&& (colaborador.getPapel().equals(Papel.DESENVOLVEDOR)))
+
+					|| ((t.getStatus().equals(StatusTarefa.EM_TESTE)
+							|| t.getStatus().equals(StatusTarefa.AGUARDANDO_VALIDACAO))
+							&& (colaborador.getPapel().equals(Papel.ANALISTA_TESTE)))
+
+					|| (colaborador.getPapel().equals(Papel.GERENTE_PROJETO)
+							|| colaborador.getPapel().equals(Papel.CLIENTE))
+
+			) {
+
+				modelo.addRow(new String[] { t.getId() + "", t.getNome(), t.getDescricao(), t.getStatus() + "",
+						t.getDataPrometida() + "" });
+			}
+
 		}
 		this.tabelaTarefas.setModel(modelo);
 
@@ -249,6 +272,19 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 	private void buttonStatusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonStatusActionPerformed
 		// TODO add your handling code here:
+		try {
+			int linha = this.tabelaTarefas.getSelectedRow() + 1;
+			Tarefa tarefa = this.manager.find(Long.valueOf(linha), Tarefa.class);
+			this.setEnabled(false);
+			telaAlteraStatus tela = new telaAlteraStatus(this, this.colaborador, tarefa);
+			tela.setVisible(true);
+			tela.setLocationRelativeTo(null);
+			this.carregaListaTarefas(this.colaborador);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");
+		} // GEN-LAST:event_buttonEditarActionPerformed
+
 	}// GEN-LAST:event_buttonStatusActionPerformed
 
 	private void buttonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonAlterarUsuarioActionPerformed
@@ -316,7 +352,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 			telaCadastroTarefa tela = new telaCadastroTarefa(this, this.colaborador, tarefa);
 			tela.setVisible(true);
 			tela.setLocationRelativeTo(null);
-			this.carregaListaTarefas();
+			this.carregaListaTarefas(this.colaborador);
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");
@@ -330,7 +366,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 			Tarefa c = this.manager.find(Long.valueOf(linha), Tarefa.class);
 			this.manager.delete(c);
 			JOptionPane.showMessageDialog(this, "Tarefa excluida com sucesso!");
-			this.carregaListaTarefas();
+			this.carregaListaTarefas(this.colaborador);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");
 		} // GEN-LAST:event_buttonExcluirActionPerformed

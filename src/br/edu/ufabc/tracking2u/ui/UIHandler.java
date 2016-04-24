@@ -31,7 +31,8 @@ public interface UIHandler {
 	 * @throws IllegalArgumentException
 	 *             caso o criador não possua a permissão necessária
 	 */
-	public void manageTarefa(String nome, String descricao, Long dataPrometida, Colaborador colaborador, Tarefa tarefa)
+	public void manageTarefa(String nome, String descricao, Long dataPrometida, Colaborador colaborador, Tarefa tarefa,
+                StatusTarefa status)
 			throws IllegalArgumentException;
 
 	/**

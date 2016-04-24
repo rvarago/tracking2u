@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class telaLogin extends javax.swing.JFrame {
 	UIHandler uihandler = new UIHandlerImpl();
 	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
-	Colaborador colaborador = new Colaborador();
+	Colaborador colaborador;
 
 	/**
 	 * Creates new form telaLogin
@@ -163,7 +163,7 @@ public class telaLogin extends javax.swing.JFrame {
 			tela.setLocationRelativeTo(null);
 			this.dispose();
 		} else {
-			JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
+			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos!");
 		}
 	}
 

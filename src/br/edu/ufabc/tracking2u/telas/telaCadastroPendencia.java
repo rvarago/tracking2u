@@ -35,16 +35,15 @@ public class telaCadastroPendencia extends javax.swing.JFrame {
 	}
 
 	public telaCadastroPendencia(telaListaPendencias telaAnterior, Tarefa tarefa, Colaborador colaborador) {
-		this();
+		initComponents();
 		this.telaAnterior = telaAnterior;
 		this.tarefa = tarefa;
 		this.colaborador = colaborador;
 		checkboxFinalizado.setVisible(false);
-
 	}
 
 	public telaCadastroPendencia(telaListaPendencias telaAnterior, Pendencia pendencia) {
-		this();
+		initComponents();
 		this.telaAnterior = telaAnterior;
 		this.pendencia = pendencia;
 		this.colaborador = pendencia.getCriador();

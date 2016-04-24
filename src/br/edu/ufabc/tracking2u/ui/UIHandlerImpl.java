@@ -36,7 +36,9 @@ public class UIHandlerImpl implements UIHandler {
 			JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso");
 		} else {
 			try {
+				Long id = c.getId();
 				this.manager.delete(c);
+				colaborador.setId(id);
 				this.manager.save(colaborador);
 				JOptionPane.showMessageDialog(null, "Colaborador atualizado com sucesso");
 
@@ -50,7 +52,7 @@ public class UIHandlerImpl implements UIHandler {
 
 	@Override
 	public void manageTarefa(String nome, String descricao, Long dataPrometida, Colaborador colaborador,
-			Tarefa tarefaUpdate) throws IllegalArgumentException {
+			Tarefa tarefaUpdate, StatusTarefa status) throws IllegalArgumentException {
 		Tarefa tarefa = new Tarefa();
 		tarefa.setNome(nome);
 		tarefa.setDescricao(descricao);
@@ -67,8 +69,16 @@ public class UIHandlerImpl implements UIHandler {
 		} else {
 			tarefa.setCriador(tarefaUpdate.getCriador());
 			tarefa.setDataCriacao(tarefaUpdate.getDataCriacao());
-			tarefa.setStatus(tarefaUpdate.getStatus());
+			if (status == null) {
+				tarefa.setStatus(tarefaUpdate.getStatus());
+			} else {
+				tarefa.setStatus(status);
+			}
+
+			Long id = tarefaUpdate.getId();
 			this.manager.delete(tarefaUpdate);
+			tarefa.setId(id);
+
 			try {
 				this.manager.save(tarefa);
 			} catch (IOException e) {
@@ -114,7 +124,8 @@ public class UIHandlerImpl implements UIHandler {
 	}
 
 	@Override
-	public void managePendencia(boolean status, String nome, String descricao, Long criadorId, Long tarefaAssociadaId, Pendencia p) {
+	public void managePendencia(boolean status, String nome, String descricao, Long criadorId, Long tarefaAssociadaId,
+			Pendencia p) {
 		Tarefa tarefa;
 		Colaborador criador;
 
@@ -143,7 +154,7 @@ public class UIHandlerImpl implements UIHandler {
 			pendencia.setDataCriacao(p.getDataCriacao());
 			pendencia.setCriador(p.getCriador());
 			pendencia.setResponsavel(p.getResponsavel());
-                        pendencia.setFinalizada(status);
+			pendencia.setFinalizada(status);
 
 			this.manager.delete(p);
 			try {
