@@ -41,7 +41,7 @@ public class UIHandlerImpl implements UIHandler {
 				JOptionPane.showMessageDialog(null, "Colaborador atualizado com sucesso");
 
 			} catch (IOException ex) {
-				JOptionPane.showMessageDialog(null, "Erro na atualização do colaborador");
+				JOptionPane.showMessageDialog(null, "Erro na atualizacao do colaborador");
 
 			}
 
@@ -88,19 +88,19 @@ public class UIHandlerImpl implements UIHandler {
 		try {
 			tarefa = this.manager.find(tarefaId, Tarefa.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Tarefa com ID " + tarefaId + "não encontrada");
+			throw new RuntimeException("Tarefa com ID " + tarefaId + "nao encontrada");
 		}
 		try {
 			responsavelAtual = this.manager.find(responsavelAtualId, Colaborador.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Colaborador com ID " + responsavelAtualId + "não encontrado");
+			throw new RuntimeException("Colaborador com ID " + responsavelAtualId + "nao encontrado");
 		}
 
 		// se a lista de papeis for formada somente pela permissão Cliente, o
 		// colaborador não poderá atribuir tarefas
 		if (responsavelAtual.getPapel() == Papel.CLIENTE) {
 			throw new IllegalArgumentException(
-					"Não é possível atribuir tarefas a outros colaboradores quando se tem o nível de acesso "
+					"Nao e possivel atribuir tarefas a outros colaboradores quando se tem o nivel de acesso "
 							+ Papel.CLIENTE);
 		}
 		tarefa.setStatus(statusAtual);
@@ -121,12 +121,12 @@ public class UIHandlerImpl implements UIHandler {
 		try {
 			tarefa = this.manager.find(tarefaAssociadaId, Tarefa.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Tarefa com ID " + tarefaAssociadaId + "não encontrada");
+			throw new RuntimeException("Tarefa com ID " + tarefaAssociadaId + "nao encontrada");
 		}
 		try {
 			criador = this.manager.find(criadorId, Colaborador.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Colaborador com ID " + criadorId + "não encontrado");
+			throw new RuntimeException("Colaborador com ID " + criadorId + "nao encontrado");
 		}
 		Pendencia pendencia = new Pendencia();
 		pendencia.setNome(nome);
@@ -137,7 +137,7 @@ public class UIHandlerImpl implements UIHandler {
 			pendencia.setCriador(criador);
 			pendencia.setResponsavel(criador);
 			this.persist(pendencia);
-			JOptionPane.showMessageDialog(null, "Pendência cadastrada com sucesso");
+			JOptionPane.showMessageDialog(null, "Pendencia cadastrada com sucesso");
 		} else {
 			pendencia.setTarefa(p.getTarefa());
 			pendencia.setDataCriacao(p.getDataCriacao());
@@ -164,12 +164,12 @@ public class UIHandlerImpl implements UIHandler {
 		try {
 			pendencia = this.manager.find(pendenciaId, Pendencia.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Pendência com ID " + pendenciaId + "não encontrada");
+			throw new RuntimeException("Pendencia com ID " + pendenciaId + "nao encontrada");
 		}
 		try {
 			responsavel = this.manager.find(responsavelId, Colaborador.class);
 		} catch (ClassNotFoundException | IOException e) {
-			throw new RuntimeException("Colaborador com ID " + responsavelId + "não encontrado");
+			throw new RuntimeException("Colaborador com ID " + responsavelId + "nao encontrado");
 		}
 
 		pendencia.setFinalizada(true);
@@ -192,7 +192,7 @@ public class UIHandlerImpl implements UIHandler {
 			throw new RuntimeException("Colaborador com ID " + colaboradorId + "não encontrado");
 		}
 		if (colaborador.getPapel() != Papel.CLIENTE) {
-			throw new IllegalAccessException("Colaborador sem a permissão de " + Papel.CLIENTE + "necessária");
+			throw new IllegalAccessException("Colaborador sem a permissão de " + Papel.CLIENTE + "necessaria");
 		}
 		try {
 			this.manager.list(Tarefa.class);

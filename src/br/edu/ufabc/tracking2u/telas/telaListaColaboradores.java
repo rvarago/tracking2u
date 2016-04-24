@@ -181,6 +181,8 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 			int linha = this.tableColaboradores.getSelectedRow();
 			Colaborador c = this.manager.find(Long.valueOf(linha + 1), Colaborador.class);
 			this.manager.delete(c);
+			JOptionPane.showMessageDialog(this, "Colaborador excluido com sucesso");
+
 			carregaListaColaboradores();
 
 		} catch (Exception e) {
@@ -195,7 +197,6 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 		tela.setVisible(true);
 		tela.setLocationRelativeTo(null); // *** this will center your app ***
 	}
-	
 
 	private void buttonEditarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonEditarColaboradorActionPerformed
 		// TODO add your handling code here:

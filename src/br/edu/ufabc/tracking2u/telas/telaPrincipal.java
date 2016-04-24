@@ -329,7 +329,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 			int linha = this.tabelaTarefas.getSelectedRow() + 1;
 			Tarefa c = this.manager.find(Long.valueOf(linha), Tarefa.class);
 			this.manager.delete(c);
-			JOptionPane.showMessageDialog(this, "Tarefa excluída com sucesso!");
+			JOptionPane.showMessageDialog(this, "Tarefa excluida com sucesso!");
 			this.carregaListaTarefas();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Selecione uma tarefa");

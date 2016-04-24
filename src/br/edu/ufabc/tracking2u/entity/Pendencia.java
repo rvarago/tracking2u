@@ -26,4 +26,6 @@ public class Pendencia extends ItemEsforco {
 	public void setTarefa(Tarefa tarefa) {
 		this.tarefa = tarefa;
 	}
+        
+        
 }

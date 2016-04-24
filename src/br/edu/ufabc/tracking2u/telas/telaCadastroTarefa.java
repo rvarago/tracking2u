@@ -64,6 +64,7 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -122,11 +123,8 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
         textDesc.setRows(5);
         scrollTextDesc.setViewportView(textDesc);
 
-        textDataPrevisao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                textDataPrevisaoMouseClicked(evt);
-            }
-        });
+        textDataPrevisao.setToolTipText("Informe uma data no formato DDMMYYYY");
+        
         textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textDataPrevisaoActionPerformed(evt);
@@ -197,12 +195,6 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textDataPrevisaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textDataPrevisaoMouseClicked
-        // TODO add your handling code here:
-            textDataPrevisao.setToolTipText("Insira uma data no formato DDMMYYYY");
-
-    }//GEN-LAST:event_textDataPrevisaoMouseClicked
 
 	private void buttonPendenciasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
