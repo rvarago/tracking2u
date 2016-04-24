@@ -42,6 +42,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 	public telaPrincipal(Colaborador c) {
 		this.initComponents();
 		this.carregaListaTarefas();
+		this.colaborador = c;
 		if (c.getPapel() != Papel.GERENTE_PROJETO) {
 			buttonCriar.setVisible(false);
 			buttonEditar.setVisible(false);
@@ -120,6 +121,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonCriar.setText("Criar");
 		buttonCriar.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonCriarActionPerformed(evt);
 			}
@@ -127,6 +129,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonSair.setText("Sair");
 		buttonSair.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonSairActionPerformed(evt);
 			}
@@ -134,6 +137,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonEditar.setText("Editar");
 		buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonEditarActionPerformed(evt);
 			}
@@ -141,6 +145,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonExcluir.setText("Excluir");
 		buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonExcluirActionPerformed(evt);
 			}
@@ -148,6 +153,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonAlterarUsuario.setText("Alterar Usuário");
 		buttonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonAlterarUsuarioActionPerformed(evt);
 			}
@@ -155,6 +161,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonStatus.setText("Alterar Status");
 		buttonStatus.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonStatusActionPerformed(evt);
 			}
@@ -164,6 +171,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuTarefaListar.setText("Listar");
 		menuTarefaListar.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuTarefaListarActionPerformed(evt);
 			}
@@ -172,6 +180,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuTarefaCadastrar.setText("Cadastrar");
 		menuTarefaCadastrar.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuTarefaCadastrarActionPerformed(evt);
 			}
@@ -182,6 +191,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuColaboradores.setText("Colaboradores");
 		menuColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuColaboradoresActionPerformed(evt);
 			}
@@ -189,6 +199,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuListarColaboradores.setText("Listar");
 		menuListarColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuListarColaboradoresActionPerformed(evt);
 			}
@@ -197,6 +208,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuCadastrarColaboradores.setText("Cadastrar");
 		menuCadastrarColaboradores.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuCadastrarColaboradoresActionPerformed(evt);
 			}
@@ -305,10 +317,10 @@ public class telaPrincipal extends javax.swing.JFrame {
 	private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonEditarActionPerformed
 		// TODO add your handling code here:
 		try {
-			int linha = this.tabelaTarefas.getSelectedRow();
-			Tarefa t = this.manager.find(Long.valueOf(linha + 1), Tarefa.class);
+			int linha = this.tabelaTarefas.getSelectedRow() + 1;
+			Tarefa tarefa = this.manager.find(Long.valueOf(linha), Tarefa.class);
 			this.setEnabled(false);
-			telaCadastroTarefa tela = new telaCadastroTarefa(this, t);
+			telaCadastroTarefa tela = new telaCadastroTarefa(this, this.colaborador, tarefa);
 			tela.setVisible(true);
 			tela.setLocationRelativeTo(null);
 			this.carregaListaTarefas();
@@ -321,8 +333,8 @@ public class telaPrincipal extends javax.swing.JFrame {
 	private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonExcluirActionPerformed
 		// TODO add your handling code here:
 		try {
-			int linha = this.tabelaTarefas.getSelectedRow();
-			Tarefa c = this.manager.find(Long.valueOf(linha + 1), Tarefa.class);
+			int linha = this.tabelaTarefas.getSelectedRow() + 1;
+			Tarefa c = this.manager.find(Long.valueOf(linha), Tarefa.class);
 			this.manager.delete(c);
 			JOptionPane.showMessageDialog(this, "Tarefa excluída com sucesso!");
 			this.carregaListaTarefas();

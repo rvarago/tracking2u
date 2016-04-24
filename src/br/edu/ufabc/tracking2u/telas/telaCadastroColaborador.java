@@ -88,7 +88,7 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
         textSenha = new javax.swing.JPasswordField();
         comboboxPapel = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Colaborador");
 
         buttonSalvarColaborador.setText("Salvar");

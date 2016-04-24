@@ -11,6 +11,8 @@ import br.edu.ufabc.tracking2u.entity.StatusTarefa;
 import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implementação padrão de {@link UIHandler}. Representa o controlador de tela.
@@ -112,9 +114,10 @@ public class UIHandlerImpl implements UIHandler {
 	}
 
 	@Override
-	public void createPendencia(String nome, String descricao, Long criadorId, Long tarefaAssociadaId) {
+	public void managePendencia(boolean status, String nome, String descricao, Long criadorId, Long tarefaAssociadaId, Pendencia p) {
 		Tarefa tarefa;
 		Colaborador criador;
+
 		try {
 			tarefa = this.manager.find(tarefaAssociadaId, Tarefa.class);
 		} catch (ClassNotFoundException | IOException e) {
@@ -126,14 +129,32 @@ public class UIHandlerImpl implements UIHandler {
 			throw new RuntimeException("Colaborador com ID " + criadorId + "não encontrado");
 		}
 		Pendencia pendencia = new Pendencia();
-		pendencia.setTarefa(tarefa);
 		pendencia.setNome(nome);
 		pendencia.setDescricao(descricao);
-		pendencia.setDataCriacao(System.currentTimeMillis());
-		pendencia.setCriador(criador);
-		pendencia.setResponsavel(criador);
-		pendencia.setFinalizada(false);
-		this.persist(pendencia);
+		if (p == null) {
+			pendencia.setTarefa(tarefa);
+			pendencia.setDataCriacao(System.currentTimeMillis());
+			pendencia.setCriador(criador);
+			pendencia.setResponsavel(criador);
+			this.persist(pendencia);
+			JOptionPane.showMessageDialog(null, "Pendência cadastrada com sucesso");
+		} else {
+			pendencia.setTarefa(p.getTarefa());
+			pendencia.setDataCriacao(p.getDataCriacao());
+			pendencia.setCriador(p.getCriador());
+			pendencia.setResponsavel(p.getResponsavel());
+                        pendencia.setFinalizada(status);
+
+			this.manager.delete(p);
+			try {
+				this.manager.save(pendencia);
+
+			} catch (IOException ex) {
+				Logger.getLogger(UIHandlerImpl.class.getName()).log(Level.SEVERE, null, ex);
+			}
+			JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso");
+
+		}
 	}
 
 	@Override

@@ -5,6 +5,7 @@
  */
 package br.edu.ufabc.tracking2u.telas;
 
+import br.edu.ufabc.tracking2u.entity.Colaborador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.ufabc.tracking2u.entity.Pendencia;
+import br.edu.ufabc.tracking2u.entity.Tarefa;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManager;
 import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,16 +26,28 @@ import br.edu.ufabc.tracking2u.persistence.PersistenceManagerFactory;
  */
 public class telaListaPendencias extends javax.swing.JFrame {
 	private final PersistenceManager manager = PersistenceManagerFactory.buildPersistenceManager();
+	Tarefa tarefa;
+	Colaborador colaborador;
+	telaCadastroTarefa telaAnterior;
 
 	/**
 	 * Creates new form telaListaPendencias
 	 */
-	public telaListaPendencias() {
+
+	public telaListaPendencias(telaCadastroTarefa telaAnterior, Tarefa tarefa, Colaborador colaborador) {
+		this.telaAnterior = telaAnterior;
+		this.tarefa = tarefa;
+		this.colaborador = colaborador;
 		this.initComponents();
-		this.carregaListaPendencias();
+		this.carregaListaPendencias(tarefa);
 	}
 
-	private void carregaListaPendencias() {
+	public telaListaPendencias() {
+		this.initComponents();
+		this.carregaListaPendencias(tarefa);
+	}
+
+	public void carregaListaPendencias(Tarefa tarefa) {
 		List<? super Pendencia> listaPendencias = new ArrayList<Pendencia>();
 		try {
 			listaPendencias = this.manager.list(Pendencia.class);
@@ -52,7 +67,10 @@ public class telaListaPendencias extends javax.swing.JFrame {
 		}
 		for (int i = 0; i < listaPendencias.size(); i++) {
 			Pendencia p = (Pendencia) listaPendencias.get(i);
-			modelo.addRow(new String[] { p.getId() + "", p.getNome(), p.getDescricao(), p.getDataFinalizacao() + "" });
+			if (p.getTarefa().getId().equals(tarefa.getId())) {
+				modelo.addRow(
+						new String[] { p.getId() + "", p.getNome(), p.getDescricao(), p.getDataFinalizacao() + "" });
+			}
 		}
 		this.tablePendencias.setModel(modelo);
 	}
@@ -64,52 +82,131 @@ public class telaListaPendencias extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		this.jScrollPane1 = new javax.swing.JScrollPane();
-		this.tablePendencias = new javax.swing.JTable();
-		this.buttonSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePendencias = new javax.swing.JTable();
+        buttonSair = new javax.swing.JButton();
+        buttonCriar = new javax.swing.JButton();
+        buttonEditar = new javax.swing.JButton();
+        buttonExcluir = new javax.swing.JButton();
 
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1.setText("jLabel1");
 
-		this.tablePendencias
-				.setModel(new javax.swing.table.DefaultTableModel(
-						new Object[][] { { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null } },
-						new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
-		this.jScrollPane1.setViewportView(this.tablePendencias);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Pendências");
 
-		this.buttonSair.setText("Sair");
-		this.buttonSair.addActionListener(new java.awt.event.ActionListener() {
-			@Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				telaListaPendencias.this.buttonSairActionPerformed(evt);
-			}
-		});
+        tablePendencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablePendencias);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this.getContentPane());
-		this.getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
-				.createSequentialGroup().addContainerGap()
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-						.addComponent(this.buttonSair).addComponent(this.jScrollPane1,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(19, Short.MAX_VALUE)));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addGap(12, 12, 12)
-								.addComponent(this.jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292,
-										Short.MAX_VALUE)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(this.buttonSair).addContainerGap()));
+        buttonSair.setText("Sair");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
 
-		this.pack();
-	}// </editor-fold>//GEN-END:initComponents
+        buttonCriar.setText("Criar");
+        buttonCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCriarActionPerformed(evt);
+            }
+        });
+
+        buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
+
+        buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonCriar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSair))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSair)
+                    .addComponent(buttonCriar)
+                    .addComponent(buttonEditar)
+                    .addComponent(buttonExcluir))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+        // TODO add your handling code here:
+        	try {
+			int linha = this.tablePendencias.getSelectedRow() + 1;
+			Pendencia pendencia = this.manager.find(Long.valueOf(linha), Pendencia.class);
+			this.setEnabled(false);
+			telaCadastroPendencia tela = new telaCadastroPendencia(this, pendencia);
+			tela.setVisible(true);
+			tela.setLocationRelativeTo(null);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Selecione uma pendência");
+		}
+    }//GEN-LAST:event_buttonEditarActionPerformed
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+	private void buttonCriarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCriarActionPerformed
+		// TODO add your handling code here:
+		this.setEnabled(false);
+		telaCadastroPendencia tela = new telaCadastroPendencia(this, this.tarefa, this.colaborador);
+		tela.setVisible(true);
+		tela.setLocationRelativeTo(null);
+	}// GEN-LAST:event_buttonCriarActionPerformed
 
 	private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonSairActionPerformed
 		// TODO add your handling code here:
-		this.dispose();
+		this.dispose();                
+			telaAnterior.setEnabled(true);
 	}// GEN-LAST:event_buttonSairActionPerformed
 
 	/**
@@ -157,9 +254,13 @@ public class telaListaPendencias extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton buttonSair;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable tablePendencias;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCriar;
+    private javax.swing.JButton buttonEditar;
+    private javax.swing.JButton buttonExcluir;
+    private javax.swing.JButton buttonSair;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablePendencias;
+    // End of variables declaration//GEN-END:variables
 }

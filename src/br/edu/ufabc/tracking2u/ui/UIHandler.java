@@ -57,7 +57,9 @@ public interface UIHandler {
 
 	/**
 	 * Cria nova {@link Pendencia}
-	 *
+	 * 
+	 * @param status
+	 *            {@link Pendencia} finalizada ou não
 	 * @param nome
 	 *            nome da nova {@link Pendencia}
 	 * @param descricao
@@ -67,7 +69,8 @@ public interface UIHandler {
 	 * @param tarefaAssociadaId
 	 *            toda a {@link Pendencia} tem uma {@link Tarefa} associada
 	 */
-	public void createPendencia(String nome, String descricao, Long criadorId, Long tarefaAssociadaId);
+	public void managePendencia(boolean status, String nome, String descricao, Long criadorId, Long tarefaAssociadaId,
+			Pendencia pendencia);
 
 	/**
 	 * Finaliza uma {@link Pendencia}
