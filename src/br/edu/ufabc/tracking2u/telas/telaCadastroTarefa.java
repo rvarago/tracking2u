@@ -64,127 +64,145 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		buttonCancelarCadastro = new javax.swing.JButton();
-		buttonSalvarCadastro = new javax.swing.JButton();
-		labelNome = new javax.swing.JLabel();
-		labelDesc = new javax.swing.JLabel();
-		labelDataPrevisao = new javax.swing.JLabel();
-		textNome = new javax.swing.JTextField();
-		scrollTextDesc = new javax.swing.JScrollPane();
-		textDesc = new javax.swing.JTextArea();
-		textDataPrevisao = new javax.swing.JTextField();
-		buttonPendencias = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        buttonCancelarCadastro = new javax.swing.JButton();
+        buttonSalvarCadastro = new javax.swing.JButton();
+        labelNome = new javax.swing.JLabel();
+        labelDesc = new javax.swing.JLabel();
+        labelDataPrevisao = new javax.swing.JLabel();
+        textNome = new javax.swing.JTextField();
+        scrollTextDesc = new javax.swing.JScrollPane();
+        textDesc = new javax.swing.JTextArea();
+        textDataPrevisao = new javax.swing.JTextField();
+        buttonPendencias = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Cadastro de Tarefa");
-		addWindowListener(new java.awt.event.WindowAdapter() {
-			public void windowClosed(java.awt.event.WindowEvent evt) {
-				formWindowClosed(evt);
-			}
-		});
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Tarefa");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-		buttonCancelarCadastro.setText("Cancelar");
-		buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				buttonCancelarCadastroMouseClicked(evt);
-			}
-		});
-		buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonCancelarCadastroActionPerformed(evt);
-			}
-		});
+        buttonCancelarCadastro.setText("Cancelar");
+        buttonCancelarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCancelarCadastroMouseClicked(evt);
+            }
+        });
+        buttonCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarCadastroActionPerformed(evt);
+            }
+        });
 
-		buttonSalvarCadastro.setText("Salvar");
-		buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonSalvarCadastroActionPerformed(evt);
-			}
-		});
+        buttonSalvarCadastro.setText("Salvar");
+        buttonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarCadastroActionPerformed(evt);
+            }
+        });
 
-		labelNome.setText("Nome");
+        labelNome.setText("Nome");
 
-		labelDesc.setText("Descrição");
+        labelDesc.setText("Detalhes");
 
-		labelDataPrevisao.setText("Data de Previsão de Término");
+        labelDataPrevisao.setText("Data de Previsao de Termino");
 
-		textNome.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				textNomeActionPerformed(evt);
-			}
-		});
+        textNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNomeActionPerformed(evt);
+            }
+        });
 
-		textDesc.setColumns(20);
-		textDesc.setRows(5);
-		scrollTextDesc.setViewportView(textDesc);
+        textDesc.setColumns(20);
+        textDesc.setRows(5);
+        scrollTextDesc.setViewportView(textDesc);
 
-		textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				textDataPrevisaoActionPerformed(evt);
-			}
-		});
+        textDataPrevisao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textDataPrevisaoMouseClicked(evt);
+            }
+        });
+        textDataPrevisao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDataPrevisaoActionPerformed(evt);
+            }
+        });
 
-		buttonPendencias.setText("Pendências Associadas");
-		buttonPendencias.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonPendenciasActionPerformed(evt);
-			}
-		});
+        buttonPendencias.setText("Pendencias Associadas");
+        buttonPendencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPendenciasActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addGap(23, 23, 23).addGroup(layout
-								.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-										layout.createSequentialGroup()
-												.addComponent(scrollTextDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 363,
-														Short.MAX_VALUE)
-												.addGap(25, 25, 25))
-								.addGroup(layout.createSequentialGroup()
-										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(labelNome))
-										.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(layout.createSequentialGroup()
-										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(labelDataPrevisao).addComponent(labelDesc)
-												.addGroup(layout.createSequentialGroup().addGap(6, 6, 6).addComponent(
-														textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-														javax.swing.GroupLayout.PREFERRED_SIZE)))
-										.addGap(0, 0, Short.MAX_VALUE))))
-						.addGroup(layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-								.addComponent(buttonPendencias)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(buttonSalvarCadastro).addGap(0, 0, 0).addComponent(buttonCancelarCadastro)
-								.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addGap(20, 20, 20)
-						.addComponent(labelNome).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-						.addComponent(labelDesc).addGap(18, 18, 18)
-						.addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(37, 37, 37).addComponent(labelDataPrevisao)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(54, 54, 54)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(buttonCancelarCadastro).addComponent(buttonSalvarCadastro)
-								.addComponent(buttonPendencias))
-						.addGap(23, 23, 23)));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(scrollTextDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNome))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelDataPrevisao)
+                            .addComponent(labelDesc)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buttonPendencias)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonSalvarCadastro)
+                .addGap(0, 0, 0)
+                .addComponent(buttonCancelarCadastro)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(labelDesc)
+                .addGap(18, 18, 18)
+                .addComponent(scrollTextDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(labelDataPrevisao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textDataPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCancelarCadastro)
+                    .addComponent(buttonSalvarCadastro)
+                    .addComponent(buttonPendencias))
+                .addGap(23, 23, 23))
+        );
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void textDataPrevisaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textDataPrevisaoMouseClicked
+        // TODO add your handling code here:
+            textDataPrevisao.setToolTipText("Insira uma data no formato DDMMYYYY");
+
+    }//GEN-LAST:event_textDataPrevisaoMouseClicked
 
 	private void buttonPendenciasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
@@ -297,16 +315,17 @@ public class telaCadastroTarefa extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton buttonCancelarCadastro;
-	private javax.swing.JButton buttonPendencias;
-	private javax.swing.JButton buttonSalvarCadastro;
-	private javax.swing.JLabel labelDataPrevisao;
-	private javax.swing.JLabel labelDesc;
-	private javax.swing.JLabel labelNome;
-	private javax.swing.JScrollPane scrollTextDesc;
-	private javax.swing.JTextField textDataPrevisao;
-	private javax.swing.JTextArea textDesc;
-	private javax.swing.JTextField textNome;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCancelarCadastro;
+    private javax.swing.JButton buttonPendencias;
+    private javax.swing.JButton buttonSalvarCadastro;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel labelDataPrevisao;
+    private javax.swing.JLabel labelDesc;
+    private javax.swing.JLabel labelNome;
+    private javax.swing.JScrollPane scrollTextDesc;
+    private javax.swing.JTextField textDataPrevisao;
+    private javax.swing.JTextArea textDesc;
+    private javax.swing.JTextField textNome;
+    // End of variables declaration//GEN-END:variables
 }

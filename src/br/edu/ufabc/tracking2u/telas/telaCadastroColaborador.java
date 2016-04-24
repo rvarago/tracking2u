@@ -105,11 +105,11 @@ public class telaCadastroColaborador extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Usuário");
+        jLabel1.setText("Usuario");
 
         jLabel2.setText("Senha");
 
-        jLabel3.setText("Permissão");
+        jLabel3.setText("Permissao");
 
         comboboxPapel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 

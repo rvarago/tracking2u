@@ -87,6 +87,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
@@ -97,8 +98,8 @@ public class telaPrincipal extends javax.swing.JFrame {
 		buttonSair = new javax.swing.JButton();
 		buttonEditar = new javax.swing.JButton();
 		buttonExcluir = new javax.swing.JButton();
-		buttonAlterarUsuario = new javax.swing.JButton();
 		buttonStatus = new javax.swing.JButton();
+		buttonAlterarUsuario = new javax.swing.JButton();
 		jMenuBar1 = new javax.swing.JMenuBar();
 		menuTarefas = new javax.swing.JMenu();
 		menuTarefaListar = new javax.swing.JMenuItem();
@@ -121,7 +122,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonCriar.setText("Criar");
 		buttonCriar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonCriarActionPerformed(evt);
 			}
@@ -129,7 +129,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonSair.setText("Sair");
 		buttonSair.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonSairActionPerformed(evt);
 			}
@@ -137,7 +136,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonEditar.setText("Editar");
 		buttonEditar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonEditarActionPerformed(evt);
 			}
@@ -145,25 +143,22 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		buttonExcluir.setText("Excluir");
 		buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonExcluirActionPerformed(evt);
 			}
 		});
 
-		buttonAlterarUsuario.setText("Alterar Usuário");
-		buttonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonStatus.setText("Alterar Status");
+		buttonStatus.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonAlterarUsuarioActionPerformed(evt);
+				buttonStatusActionPerformed(evt);
 			}
 		});
 
-		buttonStatus.setText("Alterar Status");
-		buttonStatus.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		buttonAlterarUsuario.setText("Alterar Usuario");
+		buttonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				buttonStatusActionPerformed(evt);
+				buttonAlterarUsuarioActionPerformed(evt);
 			}
 		});
 
@@ -171,7 +166,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuTarefaListar.setText("Listar");
 		menuTarefaListar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuTarefaListarActionPerformed(evt);
 			}
@@ -180,7 +174,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuTarefaCadastrar.setText("Cadastrar");
 		menuTarefaCadastrar.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuTarefaCadastrarActionPerformed(evt);
 			}
@@ -191,7 +184,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuColaboradores.setText("Colaboradores");
 		menuColaboradores.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuColaboradoresActionPerformed(evt);
 			}
@@ -199,7 +191,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuListarColaboradores.setText("Listar");
 		menuListarColaboradores.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuListarColaboradoresActionPerformed(evt);
 			}
@@ -208,7 +199,6 @@ public class telaPrincipal extends javax.swing.JFrame {
 
 		menuCadastrarColaboradores.setText("Cadastrar");
 		menuCadastrarColaboradores.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				menuCadastrarColaboradoresActionPerformed(evt);
 			}
@@ -279,6 +269,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 		telaCadastroColaborador tela = new telaCadastroColaborador(this);
 		tela.setVisible(true);
 		tela.setLocationRelativeTo(null);
+		this.setEnabled(false);
 	}// GEN-LAST:event_menuCadastrarColaboradoresActionPerformed
 
 	private void menuListarColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuListarColaboradoresActionPerformed
@@ -286,6 +277,8 @@ public class telaPrincipal extends javax.swing.JFrame {
 		telaListaColaboradores tela = new telaListaColaboradores(this);
 		tela.setVisible(true);
 		tela.setLocationRelativeTo(null);
+		this.setEnabled(false);
+
 	}// GEN-LAST:event_menuListarColaboradoresActionPerformed
 
 	private void menuTarefaListarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuTarefaListarActionPerformed

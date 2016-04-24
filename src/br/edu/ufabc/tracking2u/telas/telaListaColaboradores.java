@@ -195,6 +195,7 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 		tela.setVisible(true);
 		tela.setLocationRelativeTo(null); // *** this will center your app ***
 	}
+	
 
 	private void buttonEditarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonEditarColaboradorActionPerformed
 		// TODO add your handling code here:
@@ -215,6 +216,13 @@ public class telaListaColaboradores extends javax.swing.JFrame {
 	private void buttonCancelaListaColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCancelaListaColaboradoresActionPerformed
 		// TODO add your handling code here:
 		this.dispose();
+		if(telaAnteriorPrincipal!= null){
+			telaAnteriorPrincipal.setEnabled(true);
+		}
+		else if(telaAnteriorLogin != null){
+			telaAnteriorLogin.setEnabled(true);
+		}
+	
 
 	}// GEN-LAST:event_buttonCancelaListaColaboradoresActionPerformed
 

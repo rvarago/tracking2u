@@ -95,7 +95,7 @@ public class telaLogin extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Tracking 2U");
 
-		labelNome.setText("Usuário");
+		labelNome.setText("Usuario");
 
 		labelSenha.setText("Senha");
 
